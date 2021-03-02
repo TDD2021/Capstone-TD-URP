@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unwalkableMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   gridWorldSize: {x: 30, y: 30}
   nodeRadius: 1
 --- !u!4 &134116335
