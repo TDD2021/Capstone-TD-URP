@@ -5,6 +5,7 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
 	public Transform tilePrefab;
+	public Transform tower;
 	public Vector2 size;
 
 	[Range(0, 1)]
@@ -14,10 +15,22 @@ public class Map : MonoBehaviour
 	{
 		GenerateMap();
 	}
+	void Update() 
+	{
+		if (Input.GetMouseButtonDown(0))
+		{
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
+			Physics.Raycast(ray, out hit);
+			Debug.Log("This hit at " + hit.point);
+			Transform towerPlacement = Instantiate(tower, hit.point, Quaternion.Euler(Vector3.right * 0)) as Transform;
+		}
+
+	}
 	public void GenerateMap()
 	{
 		//name of object
-		string holder = "Map Generation";
+		string holder = "Map Tile Array";
 		//finds the child and destroys the object
 		if (transform.FindChild(holder))
 		{

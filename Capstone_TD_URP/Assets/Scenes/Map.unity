@@ -374,5 +374,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 4869012388301272070, guid: 380b65bdbea750342b76981cdce36f4d, type: 3}
+  tower: {fileID: 950102748700592044, guid: f466ef6b5bfea854ba26c046372565ef, type: 3}
   size: {x: 10, y: 10}
   outlinePercent: 0.25
