@@ -9,7 +9,7 @@ public class PathManager : MonoBehaviour
     PathRequest currentPathRequest;
     PathFinding pathfinding;
 
-    Boolean isProcessing 
+    Boolean isProcessing;
     static PathManager instance;
 
     private void Awake()
@@ -46,7 +46,7 @@ public class PathManager : MonoBehaviour
         }
         }
 
-    public void FinishedProcesssingPath(Vector3[] path, bool success)
+    public void FinishedProcessingPath(Vector3[] path, bool success)
     {
         currentPathRequest.callback(path, success);
         isProcessing = false;
