@@ -7,11 +7,32 @@ public class PathManager : MonoBehaviour
 {
     Queue<PathRequest> pathRequestQueue = new Queue<PathRequest>();
     PathRequest currentPathRequest;
+    PathFinding pathfinding;
 
+    Boolean isProcessing 
+    static PathManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+        pathfinding = GetComponent<PathFinding>();
+    }
 
     // This is the method to request the path and set the path for minion to follow 
     public static void RequestPath(Vector3 pathStart, Vector3 pathEnd, Action<Vector3[], Boolean> callback){
+        PathRequest newRequest = new PathRequest(pathStart, pathEnd, callback);
+        instance.pathRequestQueue.Enqueue(newRequest);
+        instance.tryProcessNext();
     }
+
+    void tryProcessNext() {
+        if (!isProcessing && pathRequestQueue.Count > 0)
+        {
+            currentPathRequest = pathRequestQueue.Dequeue();
+            isProcessing = true;
+            pathfinding.startFindPath(currentPathRequest.pathStart, currentPathRequest.pathEnd);
+        }
+    } 
 
         struct PathRequest {
             public Vector3 pathStart;
@@ -24,5 +45,12 @@ public class PathManager : MonoBehaviour
             callback = _callback;
         }
         }
+
+    public void FinishedProcesssingPath(Vector3[] path, bool success)
+    {
+        currentPathRequest.callback(path, success);
+        isProcessing = false;
+        tryProcessNext();
+    }
     
 }

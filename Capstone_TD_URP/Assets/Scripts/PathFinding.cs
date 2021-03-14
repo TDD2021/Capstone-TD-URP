@@ -8,9 +8,13 @@ public class PathFinding : MonoBehaviour
 	public Transform seeker, target;
 	Grid grid;
 
+
+	PathManager requestManager;
+
 	void Awake()
 	{
 		grid = GetComponent<Grid>();
+		requestManager = GetComponent<PathManager>();
 	}
 
 	void Update()
@@ -18,8 +22,16 @@ public class PathFinding : MonoBehaviour
 		FindPath(seeker.position, target.position);
 	}
 
+
+	public void startFindPath(Vector3 startPos, Vector3 targetPos)
+	{
+		StartCoroutine(FindPath(startPos, targetPos));
+	}
+
+
+
 	// Method to find the shortest path from staring point to end point 
-	void FindPath(Vector3 startPos, Vector3 targetPos)
+	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
 	{
 		Node startNode = grid.NodeFromWorldPoint(startPos);
 		Node targetNode = grid.NodeFromWorldPoint(targetPos);
@@ -46,7 +58,7 @@ public class PathFinding : MonoBehaviour
 			if (node == targetNode)
 			{
 				RetracePath(startNode, targetNode);
-				return;
+				yield return null;
 			}
 
 			foreach (Node neighbour in grid.GetNeighbours(node))
@@ -68,6 +80,7 @@ public class PathFinding : MonoBehaviour
 				}
 			}
 		}
+		yield return null;
 	}
 
 	void RetracePath(Node startNode, Node endNode)
@@ -95,4 +108,6 @@ public class PathFinding : MonoBehaviour
 			return 14 * dstY + 10 * (dstX - dstY);
 		return 14 * dstX + 10 * (dstY - dstX);
 	}
+
+
 }
