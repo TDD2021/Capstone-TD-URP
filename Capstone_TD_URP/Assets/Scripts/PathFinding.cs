@@ -18,6 +18,7 @@ public class PathFinding : MonoBehaviour
 		FindPath(seeker.position, target.position);
 	}
 
+	// Method to find the shortest path from staring point to end point 
 	void FindPath(Vector3 startPos, Vector3 targetPos)
 	{
 		Node startNode = grid.NodeFromWorldPoint(startPos);

@@ -8,7 +8,7 @@ public class Grid : MonoBehaviour
 	public LayerMask unwalkableMask;
 	public Vector2 gridWorldSize;
 	public float nodeRadius;
-	Node[,] grid;
+	Node[,] grid; // 2 dimention array of node class 
 
 	float nodeDiameter;
 	int gridSizeX, gridSizeY;
@@ -16,14 +16,15 @@ public class Grid : MonoBehaviour
 	void Awake()
 	{
 		nodeDiameter = nodeRadius * 2;
-		gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
+		gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);// gridWorldSize.x= 30, node Diameter = 2 => grid SizeX = 15
 		gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
 		CreateGrid();
 	}
 
+	// Creat Grid system 
 	void CreateGrid()
 	{
-		grid = new Node[gridSizeX, gridSizeY];
+		grid = new Node[gridSizeX, gridSizeY]; // the array will have 15 arrays and each array has 15 elements  
 		Vector3 worldBottomLeft = transform.position - Vector3.right * gridWorldSize.x / 2 - Vector3.forward * gridWorldSize.y / 2;
 
 		for (int x = 0; x < gridSizeX; x++)
@@ -37,23 +38,30 @@ public class Grid : MonoBehaviour
 		}
 	}
 
+	// a List of all neighbour node that surrond the curent node in the grid 
 	public List<Node> GetNeighbours(Node node)
 	{
 		List<Node> neighbours = new List<Node>();
-
+		//for the surrouning nodes of a specific node (0) in the grid:
+		//the position -1 is the node on the left 
+		//the position 1 is the node on the right
+		//the position 0 is the current node                                                          
+		//      *  *  *
+		//      *  0  *
+		//		*  *  *
 		for (int x = -1; x <= 1; x++)
 		{
 			for (int y = -1; y <= 1; y++)
 			{
 				if (x == 0 && y == 0)
-					continue;
+					continue;// countinue to find the node on the right if x,y ==0 
 
 				int checkX = node.gridX + x;
 				int checkY = node.gridY + y;
 
 				if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY)
 				{
-					neighbours.Add(grid[checkX, checkY]);
+					neighbours.Add(grid[checkX, checkY]); // get tje position of the node to the list 
 				}
 			}
 		}
