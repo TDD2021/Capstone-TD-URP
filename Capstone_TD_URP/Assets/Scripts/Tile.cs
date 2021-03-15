@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    //shows player what tile they are hoving on. 
     public Color hoverColor;
+    //offset tower to place perfectly on the tile.
     public Vector3 positionOffset;
+    //tower object
     public GameObject tower;
+
     private Renderer renderer;
     private Color startingColor;
 
@@ -49,6 +53,8 @@ public class Tile : MonoBehaviour
 
         GameObject towerToBuild = BuildManager.instance.GetBuildTower();
         tower = (GameObject)Instantiate(towerToBuild, transform.position+positionOffset, Quaternion.Euler(Vector3.right * 0));
+        //Remove current selection
+        BuildManager.instance.SetBuildTower(null);
 
     }
     void OnMouseExit()
