@@ -17,14 +17,14 @@ public class Map : MonoBehaviour
 	}
 	void Update() 
 	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit hit;
-			Physics.Raycast(ray, out hit);
-			Debug.Log("This hit at " + hit.point);
-			Transform towerPlacement = Instantiate(tower, hit.point, Quaternion.Euler(Vector3.right * 0)) as Transform;
-		}
+		//if (Input.GetMouseButtonDown(0))
+		//{
+		//	Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		//	RaycastHit hit;
+		//	Physics.Raycast(ray, out hit);
+		//	Debug.Log("This hit at " + hit.point);
+		//	Transform towerPlacement = Instantiate(tower, hit.point, Quaternion.Euler(Vector3.right * 0)) as Transform;
+		//}
 
 	}
 	public void GenerateMap()
