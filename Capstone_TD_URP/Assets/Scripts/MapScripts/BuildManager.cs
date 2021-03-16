@@ -23,6 +23,8 @@ public class BuildManager : MonoBehaviour
     public GameObject tower1;
     public GameObject tower2;
 
+    public GameObject minion1;
+
     public GameObject GetBuildTower() 
     {
         return buildTower;
