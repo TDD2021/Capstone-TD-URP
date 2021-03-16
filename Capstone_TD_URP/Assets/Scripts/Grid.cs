@@ -39,6 +39,7 @@ public class Grid : MonoBehaviour
 	}
 
 	// a List of all neighbour node that surrond the curent node in the grid 
+	//In the future , if we want  path not going 8 way (diagonally) and just keep it 4 way (north, south, west, east), modify this code
 	public List<Node> GetNeighbours(Node node)
 	{
 		List<Node> neighbours = new List<Node>();
@@ -82,16 +83,19 @@ public class Grid : MonoBehaviour
 		return grid[x, y];
 	}
 
-	
+	public List<Node> path;
 	void OnDrawGizmos()
 	{
 		Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
 
-		if (grid != null && displayGridGizmos)
+		if (grid != null)
 		{
 			foreach (Node n in grid)
 			{
 				Gizmos.color = (n.walkable) ? Color.white : Color.red;
+				if (path != null)
+					if (path.Contains(n))
+						Gizmos.color = Color.black;
 				Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter - .1f));
 			}
 		}

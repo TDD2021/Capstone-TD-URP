@@ -6,22 +6,19 @@ using UnityEngine;
 public class PathFinding : MonoBehaviour
 {
 
-	public Transform seeker, target;
+	PathManager requestManager;
 	Grid grid;
 
 
-	PathManager requestManager;
+	
 
 	void Awake()
 	{
-		grid = GetComponent<Grid>();
 		requestManager = GetComponent<PathManager>();
+		grid = GetComponent<Grid>();
+		
 	}
 
-	void Update()
-	{
-		FindPath(seeker.position, target.position);
-	}
 
 
 	public void startFindPath(Vector3 startPos, Vector3 targetPos)
@@ -34,12 +31,13 @@ public class PathFinding : MonoBehaviour
 	// Method to find the shortest path from staring point to end point 
 	IEnumerator FindPath(Vector3 startPos, Vector3 targetPos)
 	{
+
 		Vector3[] waypoints = new Vector3[0];
 		bool pathSuccess = false;
 
-		
 		Node startNode = grid.NodeFromWorldPoint(startPos);
 		Node targetNode = grid.NodeFromWorldPoint(targetPos);
+
 
 		if (startNode.walkable && targetNode.walkable)
 		{
@@ -65,7 +63,7 @@ public class PathFinding : MonoBehaviour
 				if (node == targetNode)
 				{
 					pathSuccess = true;
-					yield return null;
+					break;
 				}
 
 				foreach (Node neighbour in grid.GetNeighbours(node))
@@ -97,22 +95,23 @@ public class PathFinding : MonoBehaviour
 
 	}
 
+
 	Vector3[] RetracePath(Node startNode, Node endNode)
-	{
-		List<Node> path = new List<Node>();
-		Node currentNode = endNode;
-
-		while (currentNode != startNode)
 		{
-			path.Add(currentNode);
-			currentNode = currentNode.parent;
-		}
-		Vector3[] waypoints = SimplifyPath(path);
-		Array.Reverse(waypoints);
-		return waypoints;
+			List<Node> path = new List<Node>();
+			Node currentNode = endNode;
 
-	}
-	Vector3[] SimplifyPath(List<Node> path)
+			while (currentNode != startNode)
+			{
+				path.Add(currentNode);
+				currentNode = currentNode.parent;
+			}
+			Vector3[] waypoints = SimplifyPath(path);
+			Array.Reverse(waypoints);
+			return waypoints;
+
+		}
+		Vector3[] SimplifyPath(List<Node> path)
 	{
 		List<Vector3> waypoints = new List<Vector3>();
 		Vector2 directionOld = Vector2.zero;
@@ -122,7 +121,7 @@ public class PathFinding : MonoBehaviour
 			Vector2 directionNew = new Vector2(path[i - 1].gridX - path[i].gridX, path[i - 1].gridY - path[i].gridY);
 			if (directionNew != directionOld)
 			{
-				waypoints.Add(path[i].worldPosition);
+				waypoints.Add(path[i-1].worldPosition);
 			}
 			directionOld = directionNew;
 		}
