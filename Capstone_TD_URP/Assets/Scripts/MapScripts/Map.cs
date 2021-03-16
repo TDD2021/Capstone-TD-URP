@@ -32,9 +32,9 @@ public class Map : MonoBehaviour
 		//name of object
 		string holder = "Map Tile Array";
 		//finds the child and destroys the object
-		if (transform.FindChild(holder))
+		if (transform.Find(holder))
 		{
-			DestroyImmediate(transform.FindChild(holder).gameObject);
+			DestroyImmediate(transform.Find(holder).gameObject);
 		}
 		//stores the position, rotaion and scale of an object under mapHolder
 		Transform mapHolder = new GameObject(holder).transform;
