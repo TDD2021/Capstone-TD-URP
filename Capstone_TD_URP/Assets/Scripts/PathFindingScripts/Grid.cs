@@ -37,8 +37,8 @@ public class Grid : MonoBehaviour
 			}
 		}
 
-		foreach (Node n in grid)
-			Debug.Log("Grid X: " + n.gridX + "           Grid Y: " + n.gridY);
+		//foreach (Node n in grid)
+			//Debug.Log("Grid X: " + n.gridX + "           Grid Y: " + n.gridY);
 
 	}
 
