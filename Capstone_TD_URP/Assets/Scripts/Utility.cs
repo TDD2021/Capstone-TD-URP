@@ -30,4 +30,19 @@ public class Utility
         textMesh.GetComponent<MeshRenderer>().sortingOrder = sortingOrder;
         return textMesh;
     }
+
+    // Get World Coordinates in 3d space from mouse position
+    public static Vector3 GetMouseWorldPosition(LayerMask mouseColliderLayerMask)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, mouseColliderLayerMask))
+        {
+            //int value = grid.GetValue(raycastHit.point);
+            return raycastHit.point;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
+    }
 }
