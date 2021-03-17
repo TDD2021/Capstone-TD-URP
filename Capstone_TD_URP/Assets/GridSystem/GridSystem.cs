@@ -6,6 +6,9 @@ public class GridSystem : MonoBehaviour
 {
     [SerializeField] private Transform testTransform;
 
+    int gridWidth;
+    int gridHeight;
+
     private Grid3D<GridObject> grid;
     private Ray ray;
     [SerializeField] private LayerMask mouseColliderLayerMask;
@@ -48,8 +51,8 @@ public class GridSystem : MonoBehaviour
 
     private void Awake()
     {
-        int gridWidth = 10;
-        int gridHeight = 10;
+        gridWidth = 10;
+        gridHeight = 10;
         float cellSize = 10f;
 
         grid = new Grid3D<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero, (Grid3D<GridObject> g, int x, int z) => new GridObject(g, x, z));
@@ -67,11 +70,15 @@ public class GridSystem : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
-            GridObject gridObject = grid.GetGridObject(x, z);
-            if (gridObject.CanBuild())
+
+            if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
             {
-                Transform builtTransform = Instantiate(testTransform, grid.GetWorldPosition(x, z), Quaternion.identity);
-                gridObject.SetTransform(builtTransform);
+                GridObject gridObject = grid.GetGridObject(x, z);
+                if (gridObject.CanBuild())
+                {
+                    Transform builtTransform = Instantiate(testTransform, grid.GetWorldPosition(x, z), Quaternion.identity);
+                    gridObject.SetTransform(builtTransform);
+                }
             }
         }
     }
