@@ -493,7 +493,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322978390}
   m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 46, y: 27, z: -8.3}
+  m_LocalPosition: {x: 25.7, y: 25.7, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -653,9 +653,4 @@ MonoBehaviour:
   _destination: {fileID: 1647663381}
   cam: {fileID: 1322978392}
   _navMeshAgent: {fileID: 1759658975}
-  _towerNavMeshAgent: {fileID: 0}
-  _towerNavMeshObstacle: {fileID: 0}
-  tower: {fileID: 0}
   positionOffset: {x: 0, y: 0, z: 0}
-  EndPoint: {fileID: 0}
-  Minion: {fileID: 0}
