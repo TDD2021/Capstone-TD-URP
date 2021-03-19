@@ -29,10 +29,10 @@ public class PlayerMove : MonoBehaviour
         else
             SetDestination();
 
-        buildManager = BuildManager.instance;
+       /* buildManager = BuildManager.instance;
 
         buildManager.SetBuildTower(buildManager.tower1);
-        positionOffset = new Vector3(0, 0.5f, 0);
+        positionOffset = new Vector3(0, 0.5f, 0);*/
     }
 
     private void SetDestination()

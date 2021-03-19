@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GatlingGun : MonoBehaviour
 {
@@ -25,11 +26,21 @@ public class GatlingGun : MonoBehaviour
     // Used to start and stop the turret firing
     bool canFire = false;
 
-    
+
+    //added
+    //public NavMeshObstacle _towerNavMeshObstacle;
+
+
     void Start()
     {
         // Set the firing range distance
         this.GetComponent<SphereCollider>().radius = firingRange;
+
+        //added
+        //SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
+        NavMeshObstacle _towerNavMeshObstacle = gameObject.AddComponent<NavMeshObstacle>();
+        _towerNavMeshObstacle.carving = true;
+        _towerNavMeshObstacle.radius = 2;
     }
 
     void Update()
