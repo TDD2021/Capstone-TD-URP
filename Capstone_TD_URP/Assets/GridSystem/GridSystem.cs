@@ -92,7 +92,7 @@ public class GridSystem : MonoBehaviour
         //}
         if (Input.GetMouseButtonDown(0))
         {
-            //logic for selling tower using tags
+            //logic for selling tower using tags and raycasting
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 999f, mouseColliderLayerMask)) {
