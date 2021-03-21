@@ -58,9 +58,11 @@
   <ItemGroup>
     <Compile Include="Assets\GridSystem\GridSystem.cs" />
     <Compile Include="Assets\FREE GatlingGun\Turrets\Gatling Gun\Scripts\GatlingGun.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\TowerData.cs" />
     <Compile Include="Assets\Sci Fi Assets\Simple SciFi Gun Turret Set\Scripts\CameraMouseDrag.cs" />
     <Compile Include="Assets\Scripts\TestNavMesh\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\Utility.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\MinionData.cs" />
     <Compile Include="Assets\Scripts\TestNavMesh\NpcSimplePatrol.cs" />
     <Compile Include="Assets\GridSystem\Grid3D.cs" />
     <Compile Include="Assets\Scripts\CollisionHandler.cs" />

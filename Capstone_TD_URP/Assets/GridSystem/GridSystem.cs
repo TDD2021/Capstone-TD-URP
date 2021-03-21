@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GridSystem : MonoBehaviour
 {
-    [SerializeField] private Transform testTransform;
+    [SerializeField] private List<TowerData> towerDataList;
+    private TowerData selectedTowerData;
 
     int gridWidth;
     int gridHeight;
@@ -56,6 +57,8 @@ public class GridSystem : MonoBehaviour
         float cellSize = 5f;
 
         grid = new Grid3D<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero, (Grid3D<GridObject> g, int x, int z) => new GridObject(g, x, z));
+
+        selectedTowerData = towerDataList[0];
     }
 
     // Start is called before the first frame update
@@ -76,7 +79,7 @@ public class GridSystem : MonoBehaviour
                 GridObject gridObject = grid.GetGridObject(x, z);
                 if (gridObject.CanBuild())
                 {
-                    Transform builtTransform = Instantiate(testTransform, grid.GetWorldPosition(x, z), Quaternion.identity);
+                    Transform builtTransform = Instantiate(selectedTowerData.Prefab.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
                     gridObject.SetTransform(builtTransform);
                 }
             }
