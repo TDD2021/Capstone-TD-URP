@@ -20654,9 +20654,9 @@ GameObject:
   - component: {fileID: 114048599433676842}
   - component: {fileID: 4232046642863600317}
   - component: {fileID: 2163142085487582374}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GatelingGun_Yellow_L3
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

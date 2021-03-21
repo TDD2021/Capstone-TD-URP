@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Minions\RobotSphere\Assets\Scripts\Editor\RobotFreeAnimEditor.cs" />
      <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
  <Reference Include="UnityEditor.TestRunner">
  <HintPath>D:/TD Capstone/Capstone-TD-URP/Capstone_TD_URP/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
