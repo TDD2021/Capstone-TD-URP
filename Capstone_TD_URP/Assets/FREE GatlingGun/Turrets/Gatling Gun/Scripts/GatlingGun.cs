@@ -26,11 +26,6 @@ public class GatlingGun : MonoBehaviour
     // Used to start and stop the turret firing
     bool canFire = false;
 
-
-    //added
-    //public NavMeshObstacle _towerNavMeshObstacle;
-
-
     void Start()
     {
         // Set the firing range distance
@@ -38,9 +33,13 @@ public class GatlingGun : MonoBehaviour
 
         //added
         //SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
-        NavMeshObstacle _towerNavMeshObstacle = gameObject.AddComponent<NavMeshObstacle>();
+        /*NavMeshObstacle _towerNavMeshObstacle = gameObject.AddComponent<NavMeshObstacle>();
+        
+        //center and size need to be type vector.
+        _towerNavMeshObstacle.center = new Vector3(1,0,1);
+        _towerNavMeshObstacle.size = new Vector3(1, 0, 1);
         _towerNavMeshObstacle.carving = true;
-        _towerNavMeshObstacle.radius = 2;
+        _towerNavMeshObstacle.radius = 2;*/
     }
 
     void Update()

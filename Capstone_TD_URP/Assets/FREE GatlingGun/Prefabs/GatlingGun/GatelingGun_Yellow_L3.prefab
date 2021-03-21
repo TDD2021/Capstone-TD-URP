@@ -105,7 +105,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1062619531001516}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 1}
+  m_LocalPosition: {x: 1.26, y: 0, z: 1.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4617473201543502}
@@ -20652,10 +20652,11 @@ GameObject:
   - component: {fileID: 135749318806271514}
   - component: {fileID: 205676091413216282}
   - component: {fileID: 114048599433676842}
-  - component: {fileID: 3675241016029842209}
+  - component: {fileID: 4232046642863600317}
+  - component: {fileID: 2163142085487582374}
   m_Layer: 0
   m_Name: GatelingGun_Yellow_L3
-  m_TagString: Tower
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20668,8 +20669,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979706888108350}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.57, y: 0, z: 0.71}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4014590737078988}
   m_Father: {fileID: 0}
@@ -20684,10 +20685,10 @@ SphereCollider:
   m_GameObject: {fileID: 1979706888108350}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 1
-  m_Center: {x: 1, y: 0, z: 1}
+  m_Center: {x: 1.26, y: 0, z: 1.33}
 --- !u!205 &205676091413216282
 LODGroup:
   m_ObjectHideFlags: 0
@@ -20696,8 +20697,8 @@ LODGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979706888108350}
   serializedVersion: 2
-  m_LocalReferencePoint: {x: 0.99999964, y: 0.7575176, z: 1.0456624}
-  m_Size: 2.360426
+  m_LocalReferencePoint: {x: -0.0000004172325, y: 0.75751764, z: 0.045662403}
+  m_Size: 2.3604257
   m_FadeMode: 0
   m_AnimateCrossFading: 0
   m_LastLODIsBillboard: 0
@@ -20745,8 +20746,24 @@ MonoBehaviour:
   barrelRotationSpeed: 1000
   firingRange: 10
   muzzelFlash: {fileID: 198562569527715984}
---- !u!136 &3675241016029842209
-CapsuleCollider:
+--- !u!208 &4232046642863600317
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979706888108350}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 1, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 1.26, y: 0, z: 1.33}
+  m_TimeToStationary: 0.5
+--- !u!65 &2163142085487582374
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -20755,7 +20772,6 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 3
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 1, y: 0, z: 1}
+  serializedVersion: 2
+  m_Size: {x: 6, y: 2, z: 6}
+  m_Center: {x: 1.26, y: 0, z: 1.33}
