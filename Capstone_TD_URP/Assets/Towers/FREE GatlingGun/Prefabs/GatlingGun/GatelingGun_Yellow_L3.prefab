@@ -20653,6 +20653,7 @@ GameObject:
   - component: {fileID: 135749318806271514}
   - component: {fileID: 205676091413216282}
   - component: {fileID: 114048599433676842}
+  - component: {fileID: 5037446377604293468}
   m_Layer: 0
   m_Name: GatelingGun_Yellow_L3
   m_TagString: Untagged
@@ -20763,3 +20764,19 @@ MonoBehaviour:
   barrelRotationSpeed: 1000
   firingRange: 10
   muzzelFlash: {fileID: 198562569527715984}
+--- !u!208 &5037446377604293468
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979706888108350}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
