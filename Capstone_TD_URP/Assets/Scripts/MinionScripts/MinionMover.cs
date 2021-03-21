@@ -37,12 +37,18 @@ public class MinionMover : MonoBehaviour
         {
             Vector3 targetVector = _destination.transform.position;
             _navMeshAgent.SetDestination(targetVector);
+           
         }
     }
 
     // Update is called once per frame
     void Update()
-    {
+   { 
+            if (_navMeshAgent.nextPosition == _navMeshAgent.destination)
+            {
+                Destroy(_navMeshAgent);
+}
+       
         /*if (Input.GetMouseButtonDown(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -65,5 +71,5 @@ public class MinionMover : MonoBehaviour
             _towerNavMeshObstacle.radius = 2;
 
         }*/
-    }
+   }
 }
