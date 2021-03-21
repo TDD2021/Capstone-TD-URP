@@ -182,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65050490c4f05354ba34096c2e9b4f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testTransform: {fileID: 0}
   towerDataList:
   - {fileID: 11400000, guid: f4f390c7155bb8b47a1483c3c9d16e21, type: 2}
   mouseColliderLayerMask:
@@ -283,7 +284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6246477087944665969, guid: c541d3607dcfbb446a9963fca04ddd79, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6246477087944665969, guid: c541d3607dcfbb446a9963fca04ddd79, type: 3}
       propertyPath: m_LocalScale.x
@@ -530,7 +531,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &938666525
 Rigidbody:
@@ -784,11 +785,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4971577658108163328, guid: b35f8962efb070145981da3935db7135, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971577658108163328, guid: b35f8962efb070145981da3935db7135, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4971577658108163328, guid: b35f8962efb070145981da3935db7135, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4971577658108163328, guid: b35f8962efb070145981da3935db7135, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.7
+      value: 2.7000008
       objectReference: {fileID: 0}
     - target: {fileID: 4971577658108163328, guid: b35f8962efb070145981da3935db7135, type: 3}
       propertyPath: m_LocalPosition.y
@@ -804,15 +813,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4971577658108163328, guid: b35f8962efb070145981da3935db7135, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4971577658108163328, guid: b35f8962efb070145981da3935db7135, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4971577658108163328, guid: b35f8962efb070145981da3935db7135, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4971577658108163328, guid: b35f8962efb070145981da3935db7135, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -836,35 +845,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b35f8962efb070145981da3935db7135, type: 3}
---- !u!4 &1647663381 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6246477087944665969, guid: c541d3607dcfbb446a9963fca04ddd79, type: 3}
-  m_PrefabInstance: {fileID: 818787824}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1759658969 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8427111592125395053, guid: b35f8962efb070145981da3935db7135, type: 3}
   m_PrefabInstance: {fileID: 1438257790}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1759658970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759658969}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dae6113d9a2a1244a6c466829e238eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _destination: {fileID: 1647663381}
-  cam: {fileID: 1322978392}
-  _navMeshAgent: {fileID: 1759658975}
-  _towerNavMeshAgent: {fileID: 0}
-  _towerNavMeshObstacle: {fileID: 0}
-  tower: {fileID: 0}
-  positionOffset: {x: 0, y: 0, z: 0}
 --- !u!4 &1759658974 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4971577658108163328, guid: b35f8962efb070145981da3935db7135, type: 3}
@@ -892,22 +877,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1759658976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759658969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 742a5afa592f1424dacf0beb6885ca1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _destination: {fileID: 1647663381}
-  cam: {fileID: 1322978392}
-  _navMeshAgent: {fileID: 1759658975}
-  positionOffset: {x: 0, y: 0, z: 0}
 --- !u!120 &1759658977
 LineRenderer:
   m_ObjectHideFlags: 0
