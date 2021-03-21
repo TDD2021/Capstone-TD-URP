@@ -54,7 +54,7 @@ public class GridSystem : MonoBehaviour
     private void Awake()
     {
         gridWidth = 10;
-        gridHeight = 10;
+        gridHeight = 7;
         float cellSize = 5f;
 
         grid = new Grid3D<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero, (Grid3D<GridObject> g, int x, int z) => new GridObject(g, x, z));
