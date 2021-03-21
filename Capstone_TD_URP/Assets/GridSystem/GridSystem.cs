@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GridSystem : MonoBehaviour
 {
@@ -13,8 +14,9 @@ public class GridSystem : MonoBehaviour
     private Ray ray;
     [SerializeField] private LayerMask mouseColliderLayerMask;
 
-    public class GridObject
+    public class GridObject 
     {
+        public NavMeshObstacle _towerNavMeshObstacle;
         private Grid3D<GridObject> grid;
         private int x;
         private int z;
@@ -51,8 +53,8 @@ public class GridSystem : MonoBehaviour
 
     private void Awake()
     {
-        gridWidth = 20;
-        gridHeight = 20;
+        gridWidth = 10;
+        gridHeight = 7;
         float cellSize = 5f;
 
         grid = new Grid3D<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero, (Grid3D<GridObject> g, int x, int z) => new GridObject(g, x, z));
@@ -77,6 +79,19 @@ public class GridSystem : MonoBehaviour
                 if (gridObject.CanBuild())
                 {
                     Transform builtTransform = Instantiate(testTransform, grid.GetWorldPosition(x, z), Quaternion.identity);
+
+
+                    //NavMeshObstacle _towerNavMeshObstacle = gameObject.AddComponent<NavMeshObstacle>();
+                    //NavMeshObstacle _towerNavMeshObstacle = gridObject.AddComponent<NavMeshObstacle>();
+
+                    //center and size need to be type vector.
+                    //builtTransform.GetComponent<NavMeshObstacle>().size = new Vector3(2, 2, 2);
+                   /* gridObject._towerNavMeshObstacle = testTransform.GetComponent<NavMeshObstacle>();
+                    gridObject._towerNavMeshObstacle.center = new Vector3(1, 0, 1);
+                    gridObject._towerNavMeshObstacle.size = new Vector3(2, 2, 2);
+                    gridObject._towerNavMeshObstacle.carving = true;
+                    gridObject._towerNavMeshObstacle.radius = 2;*/
+
                     gridObject.SetTransform(builtTransform);
                 }
             }

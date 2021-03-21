@@ -20,10 +20,12 @@ public class MinionMover : MonoBehaviour
     //public GameObject Minion;
 
     //BuildManager buildManager;
+    private LineRenderer lr;
 
     void Start()
     {
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
+        lr = this.GetComponent<LineRenderer>();
 
         if (_navMeshAgent == null)
             Debug.Log("nav mesh agent component is not attached to " + gameObject.name);
@@ -37,18 +39,27 @@ public class MinionMover : MonoBehaviour
         {
             Vector3 targetVector = _destination.transform.position;
             _navMeshAgent.SetDestination(targetVector);
-           
         }
     }
 
+
+
+
     // Update is called once per frame
     void Update()
-   { 
-            if (_navMeshAgent.nextPosition == _navMeshAgent.destination)
-            {
-                Destroy(_navMeshAgent);
-}
-       
+    {
+
+        if (_navMeshAgent.hasPath)
+        {
+            lr.positionCount = _navMeshAgent.path.corners.Length;
+            lr.SetPositions(_navMeshAgent.path.corners);
+            lr.enabled = true;
+        }
+        else 
+        {
+            lr.enabled = false;
+        }
+
         /*if (Input.GetMouseButtonDown(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -71,5 +82,5 @@ public class MinionMover : MonoBehaviour
             _towerNavMeshObstacle.radius = 2;
 
         }*/
-   }
+    }
 }
