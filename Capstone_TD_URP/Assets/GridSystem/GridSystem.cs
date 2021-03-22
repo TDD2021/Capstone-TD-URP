@@ -13,8 +13,13 @@ public class GridSystem : MonoBehaviour
     private Ray ray;
     [SerializeField] private LayerMask mouseColliderLayerMask;
     BuildManager buildManager;
- 
 
+    [SerializeField]
+    PlayerInput playerInput;
+
+    bool userClickCollision = false;
+    [SerializeField]
+    GameObject userClick;
 
     public class GridObject
     {
@@ -65,12 +70,124 @@ public class GridSystem : MonoBehaviour
 
         grid = new Grid3D<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero, (Grid3D<GridObject> g, int x, int z) => new GridObject(g, x, z));
         buildManager = BuildManager.instance;
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
         buildManager = BuildManager.instance;
+    }
+
+
+    void CheckTowerPlacement()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            //logic for selling tower using tags and raycasting
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+
+
+            if (Physics.Raycast(ray, out hit, 999f, mouseColliderLayerMask))
+            {
+
+                Debug.Log(hit.collider.gameObject.tag);
+                Debug.Log(BuildManager.instance.GetSellTower());
+
+                if (hit.collider.gameObject.tag == "Tower" && BuildManager.instance.GetSellTower())
+                {
+                    Destroy(hit.transform.gameObject);
+                    BuildManager.instance.SetSellTower(false);
+                    Debug.Log(BuildManager.instance.GetSellTower());
+                }
+                else
+                {
+                    Debug.Log(hit.collider.gameObject.tag);
+                    Debug.Log("Did not sell");
+                }
+            }
+
+            if (buildManager.GetBuildTower() == null)
+                return;
+
+
+
+            //userClick.transform.position = new Vector3(x, 3, z) ;
+            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
+            Vector3 pos = grid.GetWorldPosition(x, z);
+            // 25 & 5 -> 27.37 7.69
+
+            pos.x += 2.37f;
+            pos.z += 2.69f;
+            userClick.transform.position = pos;
+
+        }
+    }
+    void PlaceTower()
+    {
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            //logic for selling tower using tags and raycasting
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+
+
+            if (Physics.Raycast(ray, out hit, 999f, mouseColliderLayerMask))
+            {
+
+                Debug.Log(hit.collider.gameObject.tag);
+                Debug.Log(BuildManager.instance.GetSellTower());
+
+                if (hit.collider.gameObject.tag == "Tower" && BuildManager.instance.GetSellTower())
+                {
+                    Destroy(hit.transform.gameObject);
+                    BuildManager.instance.SetSellTower(false);
+                    Debug.Log(BuildManager.instance.GetSellTower());
+                }
+                else
+                {
+                    Debug.Log(hit.collider.gameObject.tag);
+                    Debug.Log("Did not sell");
+                }
+            }
+
+            if (buildManager.GetBuildTower() == null)
+                return;
+        }
+            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
+
+        if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
+        {
+            GridObject gridObject = grid.GetGridObject(x, z);
+            Debug.Log("Can Build: " + gridObject.CanBuild());
+            if (gridObject.CanBuild())
+            {
+
+                
+
+                if (playerInput.userClickCollision == true)
+                {
+                    Debug.Log("Cant Place on minion");
+                    return;
+                }
+
+
+                GameObject towerToBuild = BuildManager.instance.GetBuildTower();
+                Transform tower = Instantiate(towerToBuild.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
+                gridObject.SetTransform(tower);
+                //Remove current selection
+                BuildManager.instance.SetBuildTower(null);
+
+
+
+
+            }
+
+        }
     }
 
     // Update is called once per frame
@@ -90,53 +207,13 @@ public class GridSystem : MonoBehaviour
         //        }
         //    }
         //}
-        if (Input.GetMouseButtonDown(0))
-        {
-            //logic for selling tower using tags and raycasting
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 999f, mouseColliderLayerMask)) {
 
-                Debug.Log(hit.collider.gameObject.tag);
-                Debug.Log(BuildManager.instance.GetSellTower());
-              
-                if (hit.collider.gameObject.tag == "Tower" && BuildManager.instance.GetSellTower()) {
-                    Destroy(hit.transform.gameObject);
-                    BuildManager.instance.SetSellTower(false);
-                    Debug.Log(BuildManager.instance.GetSellTower());
-                }
-                else 
-                {
-                    Debug.Log(hit.collider.gameObject.tag);
-                    Debug.Log("Did not sell");
-                }
-            }
-
-            if (buildManager.GetBuildTower() == null)
-                return;
-
-            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
-
-            if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
-            {
-                GridObject gridObject = grid.GetGridObject(x, z);
-                Debug.Log("Can Build: "+ gridObject.CanBuild());
-                if (gridObject.CanBuild())
-                {
-                    GameObject towerToBuild = BuildManager.instance.GetBuildTower();
-                    Transform tower = Instantiate(towerToBuild.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
-                    gridObject.SetTransform(tower);
-                    //Remove current selection
-                    BuildManager.instance.SetBuildTower(null);
-
-                }
-          
-                
-                 
-                
-            }
-        }
+        CheckTowerPlacement();
+        PlaceTower();
+       
     }
+
+
 
 
 
