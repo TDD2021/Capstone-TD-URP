@@ -96,10 +96,11 @@ public class GridSystem : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 999f, mouseColliderLayerMask)) {
-                //Debug.Log(hit.collider.gameObject.tag);
-                //Debug.Log(BuildManager.instance.GetSellTower());
-                if (hit.collider.gameObject.tag == "Tower" )
-                {  //&& BuildManager.instance.GetSellTower()
+
+                Debug.Log(hit.collider.gameObject.tag);
+                Debug.Log(BuildManager.instance.GetSellTower());
+              
+                if (hit.collider.gameObject.tag == "Tower" && BuildManager.instance.GetSellTower()) {
                     Destroy(hit.transform.gameObject);
                     BuildManager.instance.SetSellTower(false);
                     Debug.Log(BuildManager.instance.GetSellTower());
@@ -136,6 +137,7 @@ public class GridSystem : MonoBehaviour
             }
         }
     }
-   
+
+
 
 }
