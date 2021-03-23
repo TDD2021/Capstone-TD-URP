@@ -14,12 +14,12 @@ public class GridSystem : MonoBehaviour
     [SerializeField] private LayerMask mouseColliderLayerMask;
     BuildManager buildManager;
 
-    [SerializeField]
-    PlayerInput playerInput;
+    //[SerializeField]
+    //PlayerInput playerInput;
 
-    bool userClickCollision = false;
-    [SerializeField]
-    GameObject userClick;
+    //bool userClickCollision = false;
+    //[SerializeField]
+    //GameObject userClick;
 
     public class GridObject
     {
@@ -79,7 +79,7 @@ public class GridSystem : MonoBehaviour
         buildManager = BuildManager.instance;
     }
 
-
+    /*
     void CheckTowerPlacement()
     {
         if (Input.GetMouseButtonDown(0))
@@ -125,6 +125,11 @@ public class GridSystem : MonoBehaviour
 
         }
     }
+    */
+
+
+
+    /*
     void PlaceTower()
     {
 
@@ -189,28 +194,83 @@ public class GridSystem : MonoBehaviour
 
         }
     }
+    */
+
+
 
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
+        if (Input.GetMouseButtonDown(0))
+        {
+            //logic for selling tower using tags and raycasting
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-        //    if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
-        //    {
-        //        GridObject gridObject = grid.GetGridObject(x, z);
-        //        if (gridObject.CanBuild())
-        //        {
-        //            Transform builtTransform = Instantiate(testTransform, grid.GetWorldPosition(x, z), Quaternion.identity);
-        //            gridObject.SetTransform(builtTransform);
-        //        }
-        //    }
-        //}
+            if (Physics.Raycast(ray, out hit, 999f, mouseColliderLayerMask))
+            {
 
-        CheckTowerPlacement();
-        PlaceTower();
-       
+                Debug.Log(hit.collider.gameObject.tag);
+                Debug.Log(BuildManager.instance.GetSellTower());
+
+                if (hit.collider.gameObject.tag == "Tower" && BuildManager.instance.GetSellTower())
+                {
+                    Destroy(hit.transform.gameObject);
+                    BuildManager.instance.SetSellTower(false);
+                    Debug.Log(BuildManager.instance.GetSellTower());
+                }
+                else
+                {
+                    Debug.Log(hit.collider.gameObject.tag);
+                    Debug.Log("Did not sell");
+                }
+            }
+
+            if (buildManager.GetBuildTower() == null)
+                return;
+
+
+
+            //userClick.transform.position = new Vector3(x, 3, z) ;
+            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
+            Vector3 pos = grid.GetWorldPosition(x, z);
+            // 25 & 5 -> 27.37 7.69
+
+           // pos.x += 2.37f;
+           // pos.z += 2.69f;
+            //userClick.transform.position = pos;
+
+            if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
+            {
+                GridObject gridObject = grid.GetGridObject(x, z);
+                Debug.Log("Can Build: " + gridObject.CanBuild());
+                if (gridObject.CanBuild())
+                {
+
+
+                    /*
+                    if (playerInput.userClickCollision == true)
+                    {
+                        Debug.Log("Cant Place on minion");
+                        return;
+                    }
+                    */
+
+                    GameObject towerToBuild = BuildManager.instance.GetBuildTower();
+                    Transform tower = Instantiate(towerToBuild.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
+                    gridObject.SetTransform(tower);
+                    //Remove current selection
+                    BuildManager.instance.SetBuildTower(null);
+
+                }
+
+            }
+
+        }
+
+        //CheckTowerPlacement();
+        //PlaceTower();
+
     }
 
 
