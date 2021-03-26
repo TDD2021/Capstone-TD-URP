@@ -58,9 +58,11 @@
   <ItemGroup>
     <Compile Include="Assets\GridSystem\GridSystem.cs" />
     <Compile Include="Assets\FREE GatlingGun\Turrets\Gatling Gun\Scripts\GatlingGun.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\TowerData.cs" />
     <Compile Include="Assets\Sci Fi Assets\Simple SciFi Gun Turret Set\Scripts\CameraMouseDrag.cs" />
     <Compile Include="Assets\Scripts\TestNavMesh\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\Utility.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\MinionData.cs" />
     <Compile Include="Assets\Scripts\TestNavMesh\NpcSimplePatrol.cs" />
     <Compile Include="Assets\GridSystem\Grid3D.cs" />
     <Compile Include="Assets\Scripts\CollisionHandler.cs" />
@@ -76,12 +78,14 @@
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\MapScripts\BuildManager.cs" />
     <Compile Include="Assets\Scripts\EnemyMover.cs" />
+    <Compile Include="Assets\Minions\RobotSphere\Assets\Scripts\RobotFreeAnim.cs" />
     <Compile Include="Assets\Scripts\MapScripts\Tile.cs" />
     <Compile Include="Assets\Scripts\PathFindingScripts\Unit.cs" />
+    <Compile Include="Assets\Scripts\WaveSpamer.cs" />
     <Compile Include="Assets\Sci Fi Assets\Simple SciFi Gun Turret Set\Scripts\MoveMe.cs" />
     <Compile Include="Assets\Scripts\TestNavMesh\Waypoint.cs" />
     <Compile Include="Assets\Scripts\PathFindingScripts\PathManager.cs" />
-    <Compile Include="Assets\Scripts\WaveSpamer.cs" />
+    <Compile Include="Assets\Scripts\MinionCollision_base.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

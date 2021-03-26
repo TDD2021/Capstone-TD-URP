@@ -25,6 +25,7 @@ public class WaveSpamer : MonoBehaviour
 		}
 
 		countdown -= Time.deltaTime;//Decrease the countdown time by one every frame. 
+		Debug.Log(countdown);
 		//countdown -= 0.1f;
 
 		//countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
@@ -49,6 +50,14 @@ public class WaveSpamer : MonoBehaviour
 
 	void SpawnEnemy() // spawm minion of each wave 
 	{
-		Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+		if (enemy != null)
+		{
+			Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+		}
+		else
+		{
+			
+		Debug.Log("Enemy no longer respawn");
+		}
 	}
 }

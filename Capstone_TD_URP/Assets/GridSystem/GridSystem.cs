@@ -62,7 +62,7 @@ public class GridSystem : MonoBehaviour
 
         grid = new Grid3D<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero, (Grid3D<GridObject> g, int x, int z) => new GridObject(g, x, z));
 
-        selectedTowerData = towerDataList[0];
+       // selectedTowerData = towerDataList[0];
     }
 
     // Start is called before the first frame update
@@ -99,7 +99,7 @@ public class GridSystem : MonoBehaviour
                      gridObject._towerNavMeshObstacle.radius = 2;*/
 
 
-                    _ = Instantiate(selectedTowerData.Prefab.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
+                    //_ = Instantiate(selectedTowerData.Prefab.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
 
                     gridObject.SetTransform(builtTransform);
                 }

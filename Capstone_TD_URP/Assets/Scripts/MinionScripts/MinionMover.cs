@@ -6,7 +6,9 @@ using UnityEngine.AI;
 public class MinionMover : MonoBehaviour
 {
     [SerializeField]
-    Transform _destination;
+    //Transform _destination;
+
+    Vector3 destination; 
 
     public Camera cam;
     public NavMeshAgent _navMeshAgent;
@@ -24,30 +26,55 @@ public class MinionMover : MonoBehaviour
 
     void Start()
     {
+        destination = new Vector3(2.2f ,3f,2.49f);
+        
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
         lr = this.GetComponent<LineRenderer>();
 
-        if (_navMeshAgent == null)
-            Debug.Log("nav mesh agent component is not attached to " + gameObject.name);
-        else
-            SetDestination();
+        //if (_navMeshAgent == null)
+        //    Debug.Log("nav mesh agent component is not attached to " + gameObject.name);
+       // else
+       // { SetDestination();       
+       // }
+        
     }
 
     private void SetDestination()
     {
-        if (_destination != null)
+      
+        if (destination != null)
         {
-            Vector3 targetVector = _destination.transform.position;
+            Vector3 targetVector = destination;
             _navMeshAgent.SetDestination(targetVector);
-        }
-    }
 
+        }
+        /*
+        if (!_navMeshAgent.pathPending)
+        {
+
+            float dist = _navMeshAgent.remainingDistance;
+            if (dist <= 0.5f)
+            {
+                Destroy(gameObject);
+
+            }
+            return;
+        }*/
+    }
 
 
 
     // Update is called once per frame
     void Update()
     {
+        if (_navMeshAgent == null)
+            Debug.Log("nav mesh agent component is not attached to " + gameObject.name);
+        else
+        {
+            SetDestination();
+        }
+
+    
 
         if (_navMeshAgent.hasPath)
         {
@@ -59,7 +86,7 @@ public class MinionMover : MonoBehaviour
         {
             lr.enabled = false;
         }
-
+     
         /*if (Input.GetMouseButtonDown(0))
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
