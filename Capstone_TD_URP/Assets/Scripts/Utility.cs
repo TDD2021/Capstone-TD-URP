@@ -30,7 +30,7 @@ public class Utility
         textMesh.color = color;
         textMesh.GetComponent<MeshRenderer>().sortingOrder = sortingOrder;
         //rotate x by 90
-        textMesh.transform.Rotate(new Vector3(90, 0, 0));
+        //textMesh.transform.Rotate(new Vector3(90, 0, 0));
         return textMesh;
     }
 

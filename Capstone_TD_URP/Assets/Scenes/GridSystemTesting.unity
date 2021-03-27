@@ -469,7 +469,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65050490c4f05354ba34096c2e9b4f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testTransform: {fileID: 4514986444668122, guid: f72d03e48b3dbfd4ca0f692e695377c3, type: 3}
+  gameData: {fileID: 11400000, guid: c731f3b9a174d3b4aaffa90ecef6cb4d, type: 2}
+  towerDataList:
+  - {fileID: 11400000, guid: f4f390c7155bb8b47a1483c3c9d16e21, type: 2}
   mouseColliderLayerMask:
     serializedVersion: 2
     m_Bits: 1024
