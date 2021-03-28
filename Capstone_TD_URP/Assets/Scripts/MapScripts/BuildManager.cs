@@ -7,13 +7,13 @@ public class BuildManager : MonoBehaviour
 
     public static BuildManager instance;
     private GameObject buildTower;
-   
+    private bool sellTower = false;
 
     void Awake() 
     {
         if (instance != null)
         {
-            Debug.LogError("More than one instance of BuildManager");
+            Debug.LogError("More than one instance of Build Manager");
         }
 
         instance = this;
@@ -30,11 +30,23 @@ public class BuildManager : MonoBehaviour
         return buildTower;
     }
 
-    public void SetBuildTower(GameObject tower) 
+    public void SetBuildTower(GameObject tower)
     {
 
         buildTower = tower;
-    
+
+
+
     }
+    public void SetSellTower(bool decesion) 
+    {
+         sellTower = decesion ;
+    }
+
+    public bool GetSellTower()
+    {
+        return sellTower;
+    }
+
 
 }

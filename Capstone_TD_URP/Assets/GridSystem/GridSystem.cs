@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class GridSystem : MonoBehaviour
 {
+    public GameData gameData;
+
     [SerializeField] private List<TowerData> towerDataList;
-    private TowerData selectedTowerData;
+    private TowerData towerData;
 
     int gridWidth;
     int gridHeight;
 
-    private Grid3D<GridObject> grid;
+    private Grid3D<GridData> grid;
     private Ray ray;
     [SerializeField] private LayerMask mouseColliderLayerMask;
+    BuildManager buildManager;
 
-    public class GridObject
+    private Transform buildChecker;
+ 
+
+
+    /*public class GridObject
     {
         private Grid3D<GridObject> grid;
         private int x;
@@ -34,6 +41,11 @@ public class GridSystem : MonoBehaviour
             grid.TriggerGridObjectChanged(x, z);
         }
 
+        public Transform GetTransform()
+        {
+            return transform;
+        }
+
         public void ClearTransform()
         {
             transform = null;
@@ -48,41 +60,99 @@ public class GridSystem : MonoBehaviour
         {
             return x + ", " + z + "\n" + transform;
         }
-    }
+    }*/
 
     private void Awake()
     {
-        gridWidth = 10;
-        gridHeight = 10;
-        float cellSize = 5f;
+        gridWidth = gameData.GridWidth;
+        gridHeight = gameData.GridHeight;
+        float cellSize = gameData.CellSize;
 
-        grid = new Grid3D<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero, (Grid3D<GridObject> g, int x, int z) => new GridObject(g, x, z));
+        
 
-        selectedTowerData = towerDataList[0];
+        grid = new Grid3D<GridData>(gridWidth, gridHeight, cellSize, Vector3.zero, (Grid3D<GridData> g, int x, int z) => new GridData(g, x, z));
+
+        towerData = towerDataList[0];
+
+        buildManager = BuildManager.instance;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        buildManager = BuildManager.instance;
+
+        buildChecker = Instantiate(gameData.BuildChecker, grid.GetWorldPosition(0, 0), Quaternion.identity);
+        //buildChecker.gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        int checkX;
+        int checkY;
+        grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);
+        buildChecker.position = grid.GetWorldPosition(checkX, checkY);
+
         if (Input.GetMouseButtonDown(0))
         {
             grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
 
             if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
             {
-                GridObject gridObject = grid.GetGridObject(x, z);
-                if (gridObject.CanBuild())
+                GridData gridObject = grid.GetGridObject(x, z);
+                if (gridObject.CanBuild(buildChecker.GetChild(0).transform))
                 {
-                    Transform builtTransform = Instantiate(selectedTowerData.Prefab.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
+                    Transform builtTransform = Instantiate(towerData.Prefab, grid.GetWorldPosition(x, z), Quaternion.identity);
                     gridObject.SetTransform(builtTransform);
                 }
             }
         }
+        /*if (Input.GetMouseButtonDown(0))
+        {
+            //logic for selling tower using tags and raycasting
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 999f, mouseColliderLayerMask)) {
+                Debug.Log(hit.collider.gameObject.tag);
+                Debug.Log(BuildManager.instance.GetSellTower());
+                if (hit.collider.gameObject.tag == "Tower" && BuildManager.instance.GetSellTower()) {
+                    Destroy(hit.transform.gameObject);
+                    BuildManager.instance.SetSellTower(false);
+                    Debug.Log(BuildManager.instance.GetSellTower());
+                }
+                else 
+                {
+                    Debug.Log("Did not sell");
+                }
+            }
+
+            if (buildManager.GetBuildTower() == null)
+                return;
+
+            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
+
+            if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
+            {
+                GridObject gridObject = grid.GetGridObject(x, z);
+                Debug.Log("Can Build: "+ gridObject.CanBuild());
+                if (gridObject.CanBuild())
+                {
+                    GameObject towerToBuild = BuildManager.instance.GetBuildTower();
+                    Transform tower = Instantiate(towerToBuild.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
+                    gridObject.SetTransform(tower);
+                    //Remove current selection
+                    BuildManager.instance.SetBuildTower(null);
+
+                }
+          
+                
+                 
+                
+            }
+        }*/
     }
+   
+
 }

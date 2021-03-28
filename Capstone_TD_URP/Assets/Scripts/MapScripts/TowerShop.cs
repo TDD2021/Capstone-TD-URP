@@ -25,7 +25,11 @@ public class TowerShop : MonoBehaviour
         buildManager.SetBuildTower(buildManager.tower2);
     }
 
-
+    public void SellTower() 
+    {
+        Debug.Log("Selling Tower");
+        buildManager.SetSellTower(true);
+    }
 
 
 
