@@ -136,9 +136,6 @@ public class GridSystem : MonoBehaviour
 
                         }
 
-
-
-
                     }
                 }
                 if (hit.collider.gameObject.tag == "Tower")
@@ -157,30 +154,30 @@ public class GridSystem : MonoBehaviour
 
             }
 
-            if (buildManager.GetBuildTower() == null)
-                return;
+            //if (buildManager.GetBuildTower() == null)
+            //    return;
 
-            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
+            //grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
 
-            if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
-            {
-                GridObject gridObject = grid.GetGridObject(x, z);
-                Debug.Log("Can Build: " + gridObject.CanBuild());
-                Debug.Log("BuildManager status" + buildManager.GetBuildTower() != null);
-                if (gridObject.CanBuild() && buildManager.GetBuildTower() != null)
-                {
-                    GameObject towerToBuild = BuildManager.instance.GetBuildTower();
-                    Transform tower = Instantiate(towerToBuild.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
-                    gridObject.SetTransform(tower);
-                    //Remove current selection
-                    BuildManager.instance.SetBuildTower(null);
+            //if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
+            //{
+            //    GridObject gridObject = grid.GetGridObject(x, z);
+            //    Debug.Log("Can Build: " + gridObject.CanBuild());
+            //    Debug.Log("BuildManager status" + buildManager.GetBuildTower() != null);
+            //    if (gridObject.CanBuild() && buildManager.GetBuildTower() != null)
+            //    {
+            //        GameObject towerToBuild = BuildManager.instance.GetBuildTower();
+            //        Transform tower = Instantiate(towerToBuild.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
+            //        gridObject.SetTransform(tower);
+            //        //Remove current selection
+            //        BuildManager.instance.SetBuildTower(null);
 
-                }
-
-
+            //    }
 
 
-            }
+
+
+            //}
         }
     }
 
