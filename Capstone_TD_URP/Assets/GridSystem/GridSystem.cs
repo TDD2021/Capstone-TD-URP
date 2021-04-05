@@ -95,8 +95,7 @@ public class GridSystem : MonoBehaviour
         //}
 
         //prevents getting mouseinpupt if it is over UI element
-        if (EventSystem.current.IsPointerOverGameObject())
-            return;
+       
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -108,34 +107,37 @@ public class GridSystem : MonoBehaviour
             {
                 Debug.Log(hit.collider.gameObject.tag);
                 //Debug.Log("Sell Status:"+buildManager.instance.GetSellTower());
-               // Debug.Log("Show Panel:" ShowTowerMenu);
+                // Debug.Log("Show Panel:" ShowTowerMenu);
+                
 
                 if (hit.collider.gameObject.tag == "Untagged") 
                 {
                     ShowTowerMenu = !ShowTowerMenu;
                     TowerPanel.SetActive(ShowTowerMenu);
-                    if (ShowTowerMenu)
-                        TowerPanel.transform.position = Input.mousePosition;
+                    //if (ShowTowerMenu)
+                    //    TowerPanel.transform.position = Input.mousePosition;
                     if (buildManager.GetBuildTower() == null)
                         return;
-
-                    grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
-
-                    if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
+                    else
                     {
-                        GridObject gridObject = grid.GetGridObject(x, z);
-                        Debug.Log("Can Build: " + gridObject.CanBuild());
-                        Debug.Log("BuildManager status" + buildManager.GetBuildTower() != null);
-                        if (gridObject.CanBuild() && buildManager.GetBuildTower() != null)
+                        grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
+
+                        if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
                         {
-                            GameObject towerToBuild = BuildManager.instance.GetBuildTower();
-                            Transform tower = Instantiate(towerToBuild.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
-                            gridObject.SetTransform(tower);
-                            //Remove current selection
-                            BuildManager.instance.SetBuildTower(null);
+                            GridObject gridObject = grid.GetGridObject(x, z);
+                            Debug.Log("Can Build: " + gridObject.CanBuild());
+                            Debug.Log("BuildManager status" + buildManager.GetBuildTower() != null);
+                            if (gridObject.CanBuild() && buildManager.GetBuildTower() != null)
+                            {
+                                GameObject towerToBuild = BuildManager.instance.GetBuildTower();
+                                Transform tower = Instantiate(towerToBuild.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
+                                gridObject.SetTransform(tower);
+                                //Remove current selection
+                                BuildManager.instance.SetBuildTower(null);
+
+                            }
 
                         }
-
                     }
                 }
                 if (hit.collider.gameObject.tag == "Tower")
@@ -143,19 +145,18 @@ public class GridSystem : MonoBehaviour
                     buildManager.SetSelectedTower(hit.transform.gameObject);
                     ShowTowerMenu = !ShowTowerMenu;
                     TowerPanel.SetActive(ShowTowerMenu);
-                    if (ShowTowerMenu)
-                        TowerPanel.transform.position = Input.mousePosition;
-                    //Destroy(hit.transform.gameObject);
-                    //BuildManager.instance.SetSellTower(false);
-                    //Debug.Log(BuildManager.instance.GetSellTower());
+                    //if (ShowTowerMenu)
+                    //    TowerPanel.transform.position = Input.mousePosition;
+                    Destroy(hit.transform.gameObject);
+                    BuildManager.instance.SetSellTower(false);
+                    Debug.Log(BuildManager.instance.GetSellTower());
                   
                 }
                
 
             }
 
-            //if (buildManager.GetBuildTower() == null)
-            //    return;
+         
 
             //grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
 
