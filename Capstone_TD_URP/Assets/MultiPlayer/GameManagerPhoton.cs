@@ -38,6 +38,7 @@ public class GameManagerPhoton : MonoBehaviourPunCallbacks //MonoBehaviour
             LoadArena();
         }
     }
+
     /// <summary>
     /// Called when the local player left the room. We need to load the launcher scene.
     /// </summary>
