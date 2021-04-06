@@ -6,6 +6,8 @@ public class GridSystem : MonoBehaviour
 {
     public GameData gameData;
 
+    public Transform gridPlane;
+
     [SerializeField] private List<TowerData> towerDataList;
     private TowerData towerData;
 
@@ -85,11 +87,15 @@ public class GridSystem : MonoBehaviour
         buildChecker = Instantiate(gameData.BuildChecker, grid.GetWorldPosition(0, 0), Quaternion.identity);
         //buildChecker.gameObject.SetActive(false);
 
+        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        SetGridPlane();
+
         int checkX;
         int checkY;
         grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);
@@ -152,6 +158,14 @@ public class GridSystem : MonoBehaviour
                 
             }
         }*/
+    }
+
+    private void SetGridPlane()
+    {
+        gridPlane.localScale = new Vector3((gameData.CellSize * gameData.GridWidth) / 10, 1, (gameData.CellSize * gameData.GridHeight) / 10);
+        gridPlane.position = this.transform.position + new Vector3(0, 0.2f, 0);
+        //gridPlane.GetChild(0).SetVector("GridTiling", new Vector4(gameData.GridWidth, gameData.GridHeight, 0, 0));
+        gridPlane.GetChild(0).gameObject.GetComponent<Renderer>().material.SetVector("GridTiling", new Vector4(gameData.GridWidth, gameData.GridHeight, 0, 0));
     }
    
 

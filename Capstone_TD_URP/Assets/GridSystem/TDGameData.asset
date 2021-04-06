@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TDGameData
   m_EditorClassIdentifier: 
   gridWidth: 10
-  gridHeight: 10
+  gridHeight: 7
   cellSize: 5
   buildChecker: {fileID: 2744183088853022486, guid: 906961f421b999d41905758d5fa06659, type: 3}
