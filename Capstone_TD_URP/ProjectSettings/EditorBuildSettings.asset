@@ -20,19 +20,19 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/LevelScene.unity
     guid: f6ff3923d33c2b7479260952d80e8b06
-  - enabled: 1
+  - enabled: 0
     path: Assets/MultiPlayer/Launcher.unity
     guid: 58c2f48d959900846b48d4576734f0bf
-  - enabled: 1
+  - enabled: 0
     path: Assets/MultiPlayer/Room for 1.unity
     guid: 5d2d7896bd66e3548a6eefcb97c8a243
-  - enabled: 1
+  - enabled: 0
     path: Assets/MultiPlayer/Room for 2.unity
     guid: 9504320a7f8423c41a3b9fa309d1c0f7
-  - enabled: 1
+  - enabled: 0
     path: Assets/MultiPlayer/Room for 3.unity
     guid: bda4ba8de2ca18844bad56599540eaa0
-  - enabled: 1
+  - enabled: 0
     path: Assets/MultiPlayer/Room for 4.unity
     guid: a9b16cceb787dc5499801150a3689bb5
   m_configObjects: {}
