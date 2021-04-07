@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GridSystem : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class GridSystem : MonoBehaviour
 
     private Transform buildChecker;
  
+    public GameObject TowerPanel;
+    private bool ShowTowerMenu = false;
 
 
     /*public class GridObject
@@ -89,6 +92,7 @@ public class GridSystem : MonoBehaviour
 
         
 
+        TowerPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -118,6 +122,7 @@ public class GridSystem : MonoBehaviour
         /*if (Input.GetMouseButtonDown(0))
         {
             //logic for selling tower using tags and raycasting
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 999f, mouseColliderLayerMask)) {
@@ -127,6 +132,7 @@ public class GridSystem : MonoBehaviour
                     Destroy(hit.transform.gameObject);
                     BuildManager.instance.SetSellTower(false);
                     Debug.Log(BuildManager.instance.GetSellTower());
+                  
                 }
                 else 
                 {
@@ -134,22 +140,22 @@ public class GridSystem : MonoBehaviour
                 }
             }
 
-            if (buildManager.GetBuildTower() == null)
-                return;
+         
 
-            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
+            //grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
 
-            if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
-            {
-                GridObject gridObject = grid.GetGridObject(x, z);
-                Debug.Log("Can Build: "+ gridObject.CanBuild());
-                if (gridObject.CanBuild())
-                {
-                    GameObject towerToBuild = BuildManager.instance.GetBuildTower();
-                    Transform tower = Instantiate(towerToBuild.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
-                    gridObject.SetTransform(tower);
-                    //Remove current selection
-                    BuildManager.instance.SetBuildTower(null);
+            //if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
+            //{
+            //    GridObject gridObject = grid.GetGridObject(x, z);
+            //    Debug.Log("Can Build: " + gridObject.CanBuild());
+            //    Debug.Log("BuildManager status" + buildManager.GetBuildTower() != null);
+            //    if (gridObject.CanBuild() && buildManager.GetBuildTower() != null)
+            //    {
+            //        GameObject towerToBuild = BuildManager.instance.GetBuildTower();
+            //        Transform tower = Instantiate(towerToBuild.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
+            //        gridObject.SetTransform(tower);
+            //        //Remove current selection
+            //        BuildManager.instance.SetBuildTower(null);
 
                 }
           
