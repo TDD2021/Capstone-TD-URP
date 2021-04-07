@@ -7,6 +7,7 @@ public class BuildManager : MonoBehaviour
 
     public static BuildManager instance;
     private GameObject buildTower;
+    private GameObject selectedTower; //selected tower when clicked on
     private bool sellTower = false;
 
     void Awake() 
@@ -22,8 +23,19 @@ public class BuildManager : MonoBehaviour
     //list of towers to build
     public GameObject tower1;
     public GameObject tower2;
-
     public GameObject minion1;
+
+    public GameObject GetSeletcedTower()
+    {
+        return selectedTower;
+    }
+
+    public void SetSelectedTower(GameObject tower)
+    {
+
+        selectedTower = tower;
+
+    }
 
     public GameObject GetBuildTower() 
     {
@@ -35,12 +47,10 @@ public class BuildManager : MonoBehaviour
 
         buildTower = tower;
 
-
-
     }
     public void SetSellTower(bool decesion) 
     {
-         sellTower = decesion ;
+         sellTower = decesion;
     }
 
     public bool GetSellTower()
