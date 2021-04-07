@@ -41,7 +41,7 @@ public class Grid3D<TGridObject>
             }
         }
 
-        bool showDebug = true;
+        bool showDebug = false;
 
         if (showDebug)
         {
