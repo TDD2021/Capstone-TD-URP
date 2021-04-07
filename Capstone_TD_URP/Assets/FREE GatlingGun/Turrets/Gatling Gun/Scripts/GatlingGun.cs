@@ -8,6 +8,8 @@ public class GatlingGun : MonoBehaviour
     // target the gun will aim at
     Transform go_target;
 
+    [SerializeField] private TowerData towerData;
+    
     // Gameobjects need to control rotation and aiming
     public Transform go_baseRotation;
     public Transform go_GunBody;
@@ -28,6 +30,11 @@ public class GatlingGun : MonoBehaviour
 
     void Start()
     {
+        // Get firing range from data
+
+        firingRange = towerData.Range;
+
+
         // Set the firing range distance
         this.GetComponent<SphereCollider>().radius = firingRange;
 

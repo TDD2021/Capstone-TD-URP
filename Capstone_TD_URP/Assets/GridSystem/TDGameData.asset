@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5276261b1d7ce149b01b0584299dcf9, type: 3}
-  m_Name: GatlingTower
+  m_Script: {fileID: 11500000, guid: c0b08b884949ef643b21e797df1ab453, type: 3}
+  m_Name: TDGameData
   m_EditorClassIdentifier: 
-  towerName: Gatling Gun
-  description: It's yellow.
-  prefab: {fileID: 4514986444668122, guid: f72d03e48b3dbfd4ca0f692e695377c3, type: 3}
-  icon: 0
-  damage: 5
-  range: 5
+  gridWidth: 10
+  gridHeight: 7
+  cellSize: 5
+  buildChecker: {fileID: 2744183088853022486, guid: 906961f421b999d41905758d5fa06659, type: 3}

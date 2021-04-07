@@ -4,24 +4,26 @@ using UnityEngine;
 
 public class GridSystem : MonoBehaviour
 {
-    [SerializeField] private Transform testTransform;
+    public GameData gameData;
+
+    public Transform gridPlane;
+
+    [SerializeField] private List<TowerData> towerDataList;
+    private TowerData towerData;
 
     int gridWidth;
     int gridHeight;
 
-    private Grid3D<GridObject> grid;
+    private Grid3D<GridData> grid;
     private Ray ray;
     [SerializeField] private LayerMask mouseColliderLayerMask;
     BuildManager buildManager;
 
-    //[SerializeField]
-    //PlayerInput playerInput;
+    private Transform buildChecker;
+ 
 
-    //bool userClickCollision = false;
-    //[SerializeField]
-    //GameObject userClick;
 
-    public class GridObject
+    /*public class GridObject
     {
         private Grid3D<GridObject> grid;
         private int x;
@@ -60,168 +62,74 @@ public class GridSystem : MonoBehaviour
         {
             return x + ", " + z + "\n" + transform;
         }
-    }
+    }*/
 
     private void Awake()
     {
-        gridWidth = 10;
-        gridHeight = 7;
-        float cellSize = 5f;
+        gridWidth = gameData.GridWidth;
+        gridHeight = gameData.GridHeight;
+        float cellSize = gameData.CellSize;
 
-        grid = new Grid3D<GridObject>(gridWidth, gridHeight, cellSize, Vector3.zero, (Grid3D<GridObject> g, int x, int z) => new GridObject(g, x, z));
-        buildManager = BuildManager.instance;
         
+
+        grid = new Grid3D<GridData>(gridWidth, gridHeight, cellSize, Vector3.zero, (Grid3D<GridData> g, int x, int z) => new GridData(g, x, z));
+
+        towerData = towerDataList[0];
+
+        buildManager = BuildManager.instance;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         buildManager = BuildManager.instance;
+
+        buildChecker = Instantiate(gameData.BuildChecker, grid.GetWorldPosition(0, 0), Quaternion.identity);
+        //buildChecker.gameObject.SetActive(false);
+
+        
+
     }
-
-    /*
-    void CheckTowerPlacement()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            //logic for selling tower using tags and raycasting
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-
-
-            if (Physics.Raycast(ray, out hit, 999f, mouseColliderLayerMask))
-            {
-
-                Debug.Log(hit.collider.gameObject.tag);
-                Debug.Log(BuildManager.instance.GetSellTower());
-
-                if (hit.collider.gameObject.tag == "Tower" && BuildManager.instance.GetSellTower())
-                {
-                    Destroy(hit.transform.gameObject);
-                    BuildManager.instance.SetSellTower(false);
-                    Debug.Log(BuildManager.instance.GetSellTower());
-                }
-                else
-                {
-                    Debug.Log(hit.collider.gameObject.tag);
-                    Debug.Log("Did not sell");
-                }
-            }
-
-            if (buildManager.GetBuildTower() == null)
-                return;
-
-
-
-            //userClick.transform.position = new Vector3(x, 3, z) ;
-            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
-            Vector3 pos = grid.GetWorldPosition(x, z);
-            // 25 & 5 -> 27.37 7.69
-
-            pos.x += 2.37f;
-            pos.z += 2.69f;
-            userClick.transform.position = pos;
-
-        }
-    }
-    */
-
-
-
-    /*
-    void PlaceTower()
-    {
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            //logic for selling tower using tags and raycasting
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-
-
-            if (Physics.Raycast(ray, out hit, 999f, mouseColliderLayerMask))
-            {
-
-                Debug.Log(hit.collider.gameObject.tag);
-                Debug.Log(BuildManager.instance.GetSellTower());
-
-                if (hit.collider.gameObject.tag == "Tower" && BuildManager.instance.GetSellTower())
-                {
-                    Destroy(hit.transform.gameObject);
-                    BuildManager.instance.SetSellTower(false);
-                    Debug.Log(BuildManager.instance.GetSellTower());
-                }
-                else
-                {
-                    Debug.Log(hit.collider.gameObject.tag);
-                    Debug.Log("Did not sell");
-                }
-            }
-
-            if (buildManager.GetBuildTower() == null)
-                return;
-        }
-            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
-
-        if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
-        {
-            GridObject gridObject = grid.GetGridObject(x, z);
-            Debug.Log("Can Build: " + gridObject.CanBuild());
-            if (gridObject.CanBuild())
-            {
-
-                
-
-                if (playerInput.userClickCollision == true)
-                {
-                    Debug.Log("Cant Place on minion");
-                    return;
-                }
-
-
-                GameObject towerToBuild = BuildManager.instance.GetBuildTower();
-                Transform tower = Instantiate(towerToBuild.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
-                gridObject.SetTransform(tower);
-                //Remove current selection
-                BuildManager.instance.SetBuildTower(null);
-
-
-
-
-            }
-
-        }
-    }
-    */
-
-
 
     // Update is called once per frame
     void Update()
     {
+        SetGridPlane();
+
+        int checkX;
+        int checkY;
+        grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);
+        buildChecker.position = grid.GetWorldPosition(checkX, checkY);
+
         if (Input.GetMouseButtonDown(0))
+        {
+            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
+
+            if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
+            {
+                GridData gridObject = grid.GetGridObject(x, z);
+                if (gridObject.CanBuild(buildChecker.GetChild(0).transform))
+                {
+                    Transform builtTransform = Instantiate(towerData.Prefab, grid.GetWorldPosition(x, z), Quaternion.identity);
+                    gridObject.SetTransform(builtTransform);
+                }
+            }
+        }
+        /*if (Input.GetMouseButtonDown(0))
         {
             //logic for selling tower using tags and raycasting
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 999f, mouseColliderLayerMask))
-            {
-
+            if (Physics.Raycast(ray, out hit, 999f, mouseColliderLayerMask)) {
                 Debug.Log(hit.collider.gameObject.tag);
                 Debug.Log(BuildManager.instance.GetSellTower());
-
-                if (hit.collider.gameObject.tag == "Tower" && BuildManager.instance.GetSellTower())
-                {
+                if (hit.collider.gameObject.tag == "Tower" && BuildManager.instance.GetSellTower()) {
                     Destroy(hit.transform.gameObject);
                     BuildManager.instance.SetSellTower(false);
                     Debug.Log(BuildManager.instance.GetSellTower());
                 }
-                else
+                else 
                 {
-                    Debug.Log(hit.collider.gameObject.tag);
                     Debug.Log("Did not sell");
                 }
             }
@@ -229,33 +137,14 @@ public class GridSystem : MonoBehaviour
             if (buildManager.GetBuildTower() == null)
                 return;
 
-
-
-            //userClick.transform.position = new Vector3(x, 3, z) ;
             grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
-            Vector3 pos = grid.GetWorldPosition(x, z);
-            // 25 & 5 -> 27.37 7.69
-
-           // pos.x += 2.37f;
-           // pos.z += 2.69f;
-            //userClick.transform.position = pos;
 
             if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
             {
                 GridObject gridObject = grid.GetGridObject(x, z);
-                Debug.Log("Can Build: " + gridObject.CanBuild());
+                Debug.Log("Can Build: "+ gridObject.CanBuild());
                 if (gridObject.CanBuild())
                 {
-
-
-                    /*
-                    if (playerInput.userClickCollision == true)
-                    {
-                        Debug.Log("Cant Place on minion");
-                        return;
-                    }
-                    */
-
                     GameObject towerToBuild = BuildManager.instance.GetBuildTower();
                     Transform tower = Instantiate(towerToBuild.transform, grid.GetWorldPosition(x, z), Quaternion.identity);
                     gridObject.SetTransform(tower);
@@ -263,18 +152,21 @@ public class GridSystem : MonoBehaviour
                     BuildManager.instance.SetBuildTower(null);
 
                 }
-
+          
+                
+                 
+                
             }
-
-        }
-
-        //CheckTowerPlacement();
-        //PlaceTower();
-
+        }*/
     }
 
-
-
-
+    private void SetGridPlane()
+    {
+        gridPlane.localScale = new Vector3((gameData.CellSize * gameData.GridWidth) / 10, 1, (gameData.CellSize * gameData.GridHeight) / 10);
+        gridPlane.position = this.transform.position + new Vector3(0, 0.2f, 0);
+        //gridPlane.GetChild(0).SetVector("GridTiling", new Vector4(gameData.GridWidth, gameData.GridHeight, 0, 0));
+        gridPlane.GetChild(0).gameObject.GetComponent<Renderer>().material.SetVector("GridTiling", new Vector4(gameData.GridWidth, gameData.GridHeight, 0, 0));
+    }
+   
 
 }

@@ -919,6 +919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9c6b1c7ba7bb74da6638d4a963e6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pvCache: {fileID: 0}
   startButn: {fileID: 1582263877}
   cancelButn: {fileID: 713184913}
   RoomSize: 4
@@ -965,6 +966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd9e517f2231c34f8572b2774a6662a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pvCache: {fileID: 0}
   multiplayerSceneIndex: 1
 --- !u!4 &1171439381
 Transform:
@@ -1261,6 +1263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fbdfa0e148dde449f98372f94d8400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pvCache: {fileID: 0}
 --- !u!4 &1867674488
 Transform:
   m_ObjectHideFlags: 0
