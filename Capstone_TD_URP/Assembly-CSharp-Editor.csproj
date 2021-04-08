@@ -706,6 +706,18 @@
       <Project>{514CA9EA-B050-F575-7428-20C5A2FE55F4}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
+    <ProjectReference Include="PlayFab.csproj">
+      <Project>{B02D2499-02E1-49BB-031B-4D4A8C99FEF6}</Project>
+      <Name>PlayFab</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayFabEditorExtensions.csproj">
+      <Project>{3302C9A5-5358-748F-12D4-3708C4E9F419}</Project>
+      <Name>PlayFabEditorExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayFabSDKEditor.csproj">
+      <Project>{16844379-3AC6-FDDA-D90B-CB063148D18B}</Project>
+      <Name>PlayFabSDKEditor</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
       <Project>{572DEA63-034F-298D-9296-B6A85FBBB2E4}</Project>
       <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>
@@ -722,21 +734,9 @@
       <Project>{E67B07C4-43DD-852F-AFA1-AE0ECE873879}</Project>
       <Name>PhotonUnityNetworking.Demos</Name>
     </ProjectReference>
-    <ProjectReference Include="PlayFab.csproj">
-      <Project>{B02D2499-02E1-49BB-031B-4D4A8C99FEF6}</Project>
-      <Name>PlayFab</Name>
-    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Utilities.csproj">
       <Project>{13E6C387-7B5C-E74B-451D-A407A13DA51A}</Project>
       <Name>PhotonUnityNetworking.Utilities</Name>
-    </ProjectReference>
-    <ProjectReference Include="PlayFabEditorExtensions.csproj">
-      <Project>{3302C9A5-5358-748F-12D4-3708C4E9F419}</Project>
-      <Name>PlayFabEditorExtensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="PlayFabSDKEditor.csproj">
-      <Project>{16844379-3AC6-FDDA-D90B-CB063148D18B}</Project>
-      <Name>PlayFabSDKEditor</Name>
     </ProjectReference>
     <ProjectReference Include="PhotonRealtime.csproj">
       <Project>{FC69FCC0-66AB-B096-98E2-DE62322F42E1}</Project>
