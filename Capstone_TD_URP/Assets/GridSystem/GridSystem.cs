@@ -92,7 +92,7 @@ public class GridSystem : MonoBehaviour
 
         
 
-        TowerPanel.SetActive(false);
+        //TowerPanel.SetActive(false);
     }
 
     // Update is called once per frame
