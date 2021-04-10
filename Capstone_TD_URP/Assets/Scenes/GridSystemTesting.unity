@@ -1128,6 +1128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: c731f3b9a174d3b4aaffa90ecef6cb4d, type: 2}
   gridPlane: {fileID: 1606687429}
+  testTransform: {fileID: 0}
   towerDataList:
   - {fileID: 11400000, guid: f4f390c7155bb8b47a1483c3c9d16e21, type: 2}
   mouseColliderLayerMask:
@@ -1577,6 +1578,7 @@ GameObject:
   - component: {fileID: 1012625512}
   - component: {fileID: 1012625511}
   - component: {fileID: 1012625510}
+  - component: {fileID: 1012625514}
   m_Layer: 10
   m_Name: Plane
   m_TagString: Untagged
@@ -1661,6 +1663,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1012625514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012625509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3db81f0bf1de94eaa5943443682427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 1797352805}
+  enemy: {fileID: 1717881943}
+  timeBetweenWaves: 2
 --- !u!1001 &1055789178
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2753,6 +2770,11 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!4 &1797352805 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6246477087944665969, guid: c541d3607dcfbb446a9963fca04ddd79, type: 3}
+  m_PrefabInstance: {fileID: 799426531}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1901844099 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5447713804148349145, guid: 79bb656fa61e6104e82f4056ecf3781f, type: 3}

@@ -11,6 +11,7 @@ public class MinionMover : MonoBehaviour
     public Camera cam;
     public NavMeshAgent _navMeshAgent;
 
+    [SerializeField]
     Vector3 destination;    // added
 
     //public NavMeshAgent _towerNavMeshAgent;
