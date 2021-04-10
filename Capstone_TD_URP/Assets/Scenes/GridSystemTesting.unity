@@ -933,7 +933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a46683e266ce448408eb2b5f9f2ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TowerPanel: {fileID: 0}
+  TowerPanel: {fileID: 586020032}
 --- !u!114 &586020035
 MonoBehaviour:
   m_ObjectHideFlags: 0
