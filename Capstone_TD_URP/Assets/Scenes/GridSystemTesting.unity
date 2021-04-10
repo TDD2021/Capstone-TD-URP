@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 120044110}
   - component: {fileID: 120044109}
   - component: {fileID: 120044108}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NavMeshPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 229028338}
   - component: {fileID: 229028337}
   - component: {fileID: 229028336}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GridDisplayPlane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,6 +572,7 @@ MonoBehaviour:
   mouseColliderLayerMask:
     serializedVersion: 2
     m_Bits: 1024
+  TowerPanel: {fileID: 0}
 --- !u!4 &687032270
 Transform:
   m_ObjectHideFlags: 0
@@ -1493,7 +1494,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1606687429}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GridDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
