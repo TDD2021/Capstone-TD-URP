@@ -1160,6 +1160,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Robot_Soldier_Red
       objectReference: {fileID: 0}
+    - target: {fileID: 1047724519691324, guid: 08f5427fe0d15ad47a5a1bb70b6156c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4953570177729582, guid: 08f5427fe0d15ad47a5a1bb70b6156c7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1354,6 +1358,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 464da362eaddf8a4e91a608932abc433, type: 2}
+    - target: {fileID: 8999562515718517523, guid: c541d3607dcfbb446a9963fca04ddd79, type: 3}
+      propertyPath: m_Radius
+      value: 0.72
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c541d3607dcfbb446a9963fca04ddd79, type: 3}
 --- !u!1 &851012119
@@ -1676,7 +1684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1797352805}
-  enemy: {fileID: 1717881943}
+  enemy: {fileID: 4953570177729582, guid: 08f5427fe0d15ad47a5a1bb70b6156c7, type: 3}
   timeBetweenWaves: 2
 --- !u!1001 &1055789178
 PrefabInstance:
@@ -2209,6 +2217,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b35f8962efb070145981da3935db7135, type: 3}
+--- !u!1 &1503588671 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 815578911237477677, guid: c541d3607dcfbb446a9963fca04ddd79, type: 3}
+  m_PrefabInstance: {fileID: 818787824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1503588672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503588671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8829e079282b9a94da4b92c62a8127f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1558646087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2479,7 +2504,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 19.57
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2506,6 +2531,7 @@ MonoBehaviour:
   _destination: {fileID: 1647663381}
   cam: {fileID: 1322978392}
   _navMeshAgent: {fileID: 1717881944}
+  destination: {x: 0, y: 0, z: 0}
   positionOffset: {x: 0, y: 0, z: 0}
 --- !u!120 &1717881947
 LineRenderer:
@@ -2671,6 +2697,7 @@ MonoBehaviour:
   _destination: {fileID: 1647663381}
   cam: {fileID: 1322978392}
   _navMeshAgent: {fileID: 1759658975}
+  destination: {x: 0, y: 0, z: 0}
   positionOffset: {x: 0, y: 0, z: 0}
 --- !u!120 &1759658977
 LineRenderer:
