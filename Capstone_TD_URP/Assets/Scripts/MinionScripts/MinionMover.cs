@@ -41,7 +41,7 @@ public class MinionMover : MonoBehaviour
 
     private void SetDestination()
     {
-        if (_destination != null)
+        if (destination != null)
         {
            // Vector3 targetVector = _destination.transform.position;       // removed
             Vector3 targetVector = destination;             //added
@@ -56,6 +56,7 @@ public class MinionMover : MonoBehaviour
     void Update()
     {
 
+
         if (_navMeshAgent.hasPath)
         {
             lr.positionCount = _navMeshAgent.path.corners.Length;
@@ -65,7 +66,7 @@ public class MinionMover : MonoBehaviour
         else 
         {
             lr.enabled = false;
-            SetDestination(); // added
+            SetDestination();
         }
 
         /*if (Input.GetMouseButtonDown(0))
