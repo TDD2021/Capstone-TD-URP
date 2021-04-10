@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class GatlingGun : MonoBehaviour
 {
+    [SerializeField]
+    private TowerData towerData;
+
     // target the gun will aim at
     Transform go_target;
 
-    [SerializeField] private TowerData towerData;
-    
     // Gameobjects need to control rotation and aiming
     public Transform go_baseRotation;
     public Transform go_GunBody;
@@ -28,25 +28,24 @@ public class GatlingGun : MonoBehaviour
     // Used to start and stop the turret firing
     bool canFire = false;
 
+    
     void Start()
     {
-        // Get firing range from data
+        // Set the firing range distance
+       // this.GetComponent<SphereCollider>().radius = firingRange;
 
+        // Get firing range from data
         firingRange = towerData.Range;
+
 
 
         // Set the firing range distance
         this.GetComponent<SphereCollider>().radius = firingRange;
 
-        //added
-        //SphereCollider sc = gameObject.AddComponent<SphereCollider>() as SphereCollider;
-        /*NavMeshObstacle _towerNavMeshObstacle = gameObject.AddComponent<NavMeshObstacle>();
-        
-        //center and size need to be type vector.
-        _towerNavMeshObstacle.center = new Vector3(1,0,1);
-        _towerNavMeshObstacle.size = new Vector3(1, 0, 1);
-        _towerNavMeshObstacle.carving = true;
-        _towerNavMeshObstacle.radius = 2;*/
+
+
+
+
     }
 
     void Update()

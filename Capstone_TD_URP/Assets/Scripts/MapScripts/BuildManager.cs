@@ -5,6 +5,7 @@ using UnityEngine;
 public class BuildManager : MonoBehaviour
 {
 
+
     public static BuildManager instance;
     private GameObject buildTower;
     private GameObject selectedTower; //selected tower when clicked on

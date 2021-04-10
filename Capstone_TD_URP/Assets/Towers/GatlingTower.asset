@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerName: Gatling Gun
   description: It's yellow.
-  prefab: {fileID: 4514986444668122, guid: 3c22f0c7ccc83304b81ff57a3de3d042, type: 3}
+  prefab: {fileID: 4514986444668122, guid: f72d03e48b3dbfd4ca0f692e695377c3, type: 3}
   icon: 0
   damage: 5
   range: 5
