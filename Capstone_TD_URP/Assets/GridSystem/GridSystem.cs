@@ -9,6 +9,8 @@ public class GridSystem : MonoBehaviour
 
     public Transform gridPlane;
 
+    [SerializeField] private Transform testTransform;
+
     [SerializeField] private List<TowerData> towerDataList;
     private TowerData towerData;
 
