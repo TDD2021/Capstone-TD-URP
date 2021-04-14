@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class GridSystem : MonoBehaviour
 {
@@ -22,10 +23,13 @@ public class GridSystem : MonoBehaviour
     [SerializeField] private LayerMask mouseColliderLayerMask;
     BuildManager buildManager;
 
+    private GridData selectedSpace;
     private Transform buildChecker;
  
     public GameObject TowerPanel;
     private bool ShowTowerMenu = false;
+
+    private int buildX, buildZ;
 
 
     /*public class GridObject
@@ -113,11 +117,32 @@ public class GridSystem : MonoBehaviour
 
             if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
             {
-                GridData gridObject = grid.GetGridObject(x, z);
-                if (gridObject.CanBuild(buildChecker.GetChild(0).transform))
+                buildX = x;
+                buildZ = z;
+
+                selectedSpace = grid.GetGridObject(x, z);
+                
+                if (selectedSpace.CanBuild(buildChecker.GetChild(0).transform))
                 {
-                    Transform builtTransform = Instantiate(towerData.Prefab, grid.GetWorldPosition(x, z), Quaternion.identity);
-                    gridObject.SetTransform(builtTransform);
+                    // Show Buy Menu - currently same menu (TODO: Add separate contextual menus!)
+                    TowerPanel.SetActive(true);
+                    for (int i = 0; i < TowerPanel.transform.childCount; i++)
+                    {
+                        TowerPanel.transform.GetChild(i).GetComponent<Button>().interactable = false;
+                    }
+
+                    TowerPanel.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                }
+                else if (selectedSpace.GetTransform() != null)
+                {
+                    // Show Sell/Modify Menu - currently same menu (TODO: Add separate contextual menus!)
+                    TowerPanel.SetActive(true);
+                    for (int i = 0; i < TowerPanel.transform.childCount; i++)
+                    {
+                        TowerPanel.transform.GetChild(i).GetComponent<Button>().interactable = false;
+                    }
+
+                    TowerPanel.transform.GetChild(2).GetComponent<Button>().interactable = true;
                 }
             }
         }
@@ -166,6 +191,24 @@ public class GridSystem : MonoBehaviour
                 
             }
         }*/
+    }
+
+    public void BuyTower(int towerId)
+    {
+        if (towerId < towerDataList.Count)
+        {
+            towerData = towerDataList[towerId];
+            Transform builtTransform = Instantiate(towerData.Prefab, grid.GetWorldPosition(buildX, buildZ), Quaternion.identity);
+            selectedSpace.SetTransform(builtTransform);
+        }
+
+        TowerPanel.SetActive(false);
+        
+    }
+
+    public void SellTower()
+    {
+        TowerPanel.SetActive(false);
     }
 
     private void SetGridPlane()
