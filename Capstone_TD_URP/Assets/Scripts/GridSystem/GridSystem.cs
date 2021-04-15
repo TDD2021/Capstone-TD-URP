@@ -122,7 +122,7 @@ public class GridSystem : MonoBehaviour
 
                 selectedSpace = grid.GetGridObject(x, z);
                 
-                if (selectedSpace.CanBuild(buildChecker.GetChild(0).transform))
+                if (selectedSpace.CanBuild())
                 {
                     // Show Buy Menu - currently same menu (TODO: Add separate contextual menus!)
                     TowerPanel.SetActive(true);
@@ -195,7 +195,7 @@ public class GridSystem : MonoBehaviour
 
     public void BuyTower(int towerId)
     {
-        if (towerId < towerDataList.Count)
+        if (towerId < towerDataList.Count && !selectedSpace.IsObstructed(buildChecker.GetChild(0).transform))
         {
             towerData = towerDataList[towerId];
             Transform builtTransform = Instantiate(towerData.Prefab, grid.GetWorldPosition(buildX, buildZ), Quaternion.identity);
