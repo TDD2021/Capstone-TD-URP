@@ -65,20 +65,33 @@ public class GatlingGun : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
+            Debug.Log("Enemy Entered Trigger");
             go_target = other.transform;
             canFire = true;
         }
 
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Enemy in Trigger");
+            go_target = other.transform;
+            canFire = true;
+        }
+    }
+    /*
     // Stop firing
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
+            Debug.Log("Enemy Left Trigger");
             canFire = false;
         }
     }
-
+    */
     void AimAndFire()
     {
         // Gun barrel rotation
