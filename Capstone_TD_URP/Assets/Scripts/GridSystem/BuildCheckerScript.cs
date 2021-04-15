@@ -36,7 +36,7 @@ public class BuildCheckerScript : MonoBehaviour
         }
 
     }
-    // Stop firing
+
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
