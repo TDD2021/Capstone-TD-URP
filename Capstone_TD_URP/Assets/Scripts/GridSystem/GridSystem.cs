@@ -106,43 +106,52 @@ public class GridSystem : MonoBehaviour
     {
         SetGridPlane();
 
-        int checkX;
+        /*int checkX;
         int checkY;
-        grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);
-        buildChecker.position = grid.GetWorldPosition(checkX, checkY);
+        grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);*/
+        //buildChecker.position = grid.GetWorldPosition(checkX, checkY);
 
         if (Input.GetMouseButtonDown(0))
         {
-            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
-
-            if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
+            if (!TowerPanel.activeSelf)
             {
-                buildX = x;
-                buildZ = z;
+                int checkX;
+                int checkY;
+                grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);
 
-                selectedSpace = grid.GetGridObject(x, z);
-                
-                if (selectedSpace.CanBuild())
+                buildChecker.position = grid.GetWorldPosition(checkX, checkY);
+
+                grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
+
+                if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
                 {
-                    // Show Buy Menu - currently same menu (TODO: Add separate contextual menus!)
-                    TowerPanel.SetActive(true);
-                    for (int i = 0; i < TowerPanel.transform.childCount; i++)
-                    {
-                        TowerPanel.transform.GetChild(i).GetComponent<Button>().interactable = false;
-                    }
+                    buildX = x;
+                    buildZ = z;
 
-                    TowerPanel.transform.GetChild(0).GetComponent<Button>().interactable = true;
-                }
-                else if (selectedSpace.GetTransform() != null)
-                {
-                    // Show Sell/Modify Menu - currently same menu (TODO: Add separate contextual menus!)
-                    TowerPanel.SetActive(true);
-                    for (int i = 0; i < TowerPanel.transform.childCount; i++)
-                    {
-                        TowerPanel.transform.GetChild(i).GetComponent<Button>().interactable = false;
-                    }
+                    selectedSpace = grid.GetGridObject(x, z);
 
-                    TowerPanel.transform.GetChild(2).GetComponent<Button>().interactable = true;
+                    if (selectedSpace.CanBuild())
+                    {
+                        // Show Buy Menu - currently same menu (TODO: Add separate contextual menus!)
+                        TowerPanel.SetActive(true);
+                        for (int i = 0; i < TowerPanel.transform.childCount; i++)
+                        {
+                            TowerPanel.transform.GetChild(i).GetComponent<Button>().interactable = false;
+                        }
+
+                        TowerPanel.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                    }
+                    else if (selectedSpace.GetTransform() != null)
+                    {
+                        // Show Sell/Modify Menu - currently same menu (TODO: Add separate contextual menus!)
+                        TowerPanel.SetActive(true);
+                        for (int i = 0; i < TowerPanel.transform.childCount; i++)
+                        {
+                            TowerPanel.transform.GetChild(i).GetComponent<Button>().interactable = false;
+                        }
+
+                        TowerPanel.transform.GetChild(2).GetComponent<Button>().interactable = true;
+                    }
                 }
             }
         }
@@ -195,19 +204,28 @@ public class GridSystem : MonoBehaviour
 
     public void BuyTower(int towerId)
     {
+        /*int checkX;
+        int checkY;
+        grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);
+
+        buildChecker.position = grid.GetWorldPosition(checkX, checkY);*/
+        Debug.Log("Buy clicked: " + towerId);
         if (towerId < towerDataList.Count && !selectedSpace.IsObstructed(buildChecker.GetChild(0).transform))
         {
+            Debug.Log("(Placing) Tower id: " + towerId);
             towerData = towerDataList[towerId];
             Transform builtTransform = Instantiate(towerData.Prefab, grid.GetWorldPosition(buildX, buildZ), Quaternion.identity);
             selectedSpace.SetTransform(builtTransform);
         }
 
         TowerPanel.SetActive(false);
-        
+
+        buildChecker.position = grid.GetWorldPosition(-5, -5);
     }
 
     public void SellTower()
     {
+        Debug.Log("sell clicked");
         TowerPanel.SetActive(false);
     }
 

@@ -25,7 +25,7 @@ public class WaveSpamer : MonoBehaviour
 		}
 
 		countdown -= Time.deltaTime;//Decrease the countdown time by one every frame. 
-		Debug.Log(countdown);
+		//Debug.Log(countdown);
 		//countdown -= 0.1f;
 
 		//countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);

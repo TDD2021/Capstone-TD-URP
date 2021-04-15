@@ -50,6 +50,7 @@ public class GridData
 
     public bool IsObstructed(Transform buildChecker)
     {
+        Debug.Log("IsObstructed: " + buildChecker.GetComponent<BuildCheckerScript>().Obstructed);
         return buildChecker.GetComponent<BuildCheckerScript>().Obstructed;
     }
 
