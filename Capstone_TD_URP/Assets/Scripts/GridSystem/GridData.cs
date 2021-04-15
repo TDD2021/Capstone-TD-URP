@@ -32,9 +32,9 @@ public class GridData
         transform = null;
     }
 
-    public bool CanBuild(Transform buildChecker)
+    public bool CanBuild()
     {
-        if (buildChecker.GetComponent<BuildCheckerScript>().CanBuild && transform == null)
+        /*if (buildChecker.GetComponent<BuildCheckerScript>().Obstructed && transform == null)
         {
             Debug.Log("Can build");
             return true;
@@ -43,9 +43,14 @@ public class GridData
         {
             Debug.Log("No build");
             return false;
-        }
+        }*/
 
-        //return transform == null;
+        return transform == null;
+    }
+
+    public bool IsObstructed(Transform buildChecker)
+    {
+        return buildChecker.GetComponent<BuildCheckerScript>().Obstructed;
     }
 
     public override string ToString()

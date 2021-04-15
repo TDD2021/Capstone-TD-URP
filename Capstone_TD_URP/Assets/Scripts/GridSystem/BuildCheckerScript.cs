@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BuildCheckerScript : MonoBehaviour
 {
-    private bool canBuild = true;
+    private bool obstructed = true;
     private Transform parent;
     public GameData gameData;
 
-    public bool CanBuild => canBuild;
+    public bool Obstructed => obstructed;
 
     private void Awake()
     {
@@ -32,16 +32,16 @@ public class BuildCheckerScript : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            canBuild = false;
+            obstructed = false;
         }
 
     }
-    // Stop firing
+
     void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
-            canBuild = true;
+            obstructed = true;
         }
     }
 }
