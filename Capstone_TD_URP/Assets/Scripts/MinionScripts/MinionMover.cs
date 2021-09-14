@@ -10,6 +10,10 @@ public class MinionMover : MonoBehaviour
 
     public Camera cam;
     public NavMeshAgent _navMeshAgent;
+
+    [SerializeField]
+    Vector3 destination;    // added
+
     //public NavMeshAgent _towerNavMeshAgent;
     //public NavMeshObstacle _towerNavMeshObstacle;
 
@@ -24,6 +28,8 @@ public class MinionMover : MonoBehaviour
 
     void Start()
     {
+        destination = new Vector3(2.2f, 3f, 2.49f);     // added
+
         _navMeshAgent = this.GetComponent<NavMeshAgent>();
         lr = this.GetComponent<LineRenderer>();
 
@@ -35,9 +41,10 @@ public class MinionMover : MonoBehaviour
 
     private void SetDestination()
     {
-        if (_destination != null)
+        if (destination != null)
         {
-            Vector3 targetVector = _destination.transform.position;
+           // Vector3 targetVector = _destination.transform.position;       // removed
+            Vector3 targetVector = destination;             //added
             _navMeshAgent.SetDestination(targetVector);
         }
     }
@@ -49,6 +56,7 @@ public class MinionMover : MonoBehaviour
     void Update()
     {
 
+
         if (_navMeshAgent.hasPath)
         {
             lr.positionCount = _navMeshAgent.path.corners.Length;
@@ -58,6 +66,7 @@ public class MinionMover : MonoBehaviour
         else 
         {
             lr.enabled = false;
+            SetDestination();
         }
 
         /*if (Input.GetMouseButtonDown(0))

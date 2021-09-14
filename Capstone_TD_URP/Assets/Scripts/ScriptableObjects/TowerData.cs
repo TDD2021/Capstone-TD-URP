@@ -7,14 +7,14 @@ public class TowerData : ScriptableObject
 {
     [SerializeField] private string towerName;      // Name as it appears in game
     [SerializeField] private string description;    // In game description
-    [SerializeField] private GameObject prefab;     // Tower prefab
+    [SerializeField] private Transform prefab;     // Tower prefab
     [SerializeField] private int icon;              // UI icon for menus
     [SerializeField] private int damage;            // Damage dealt by tower
     [SerializeField] private int range;             // Firing range of tower
 
     public string TowerName => towerName;
     public string Description => description;
-    public GameObject Prefab => prefab;
+    public Transform Prefab => prefab;
     public int Icon => icon;
     public int Damage => damage;
     public int Range => range;
