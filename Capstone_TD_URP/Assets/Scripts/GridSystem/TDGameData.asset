@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0b08b884949ef643b21e797df1ab453, type: 3}
+  m_Name: TDGameData
+  m_EditorClassIdentifier: 
+  gridWidth: 10
+  gridHeight: 7
+  cellSize: 5
+  buildChecker: {fileID: 2744183088853022486, guid: 906961f421b999d41905758d5fa06659, type: 3}
