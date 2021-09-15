@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5276261b1d7ce149b01b0584299dcf9, type: 3}
-  m_Name: GatlingTower
+  m_Script: {fileID: 11500000, guid: 1aa9cafbcf4b0c94694e568056df3ebc, type: 3}
+  m_Name: PlayerOneData
   m_EditorClassIdentifier: 
-  towerName: Gatling Gun
-  description: It's yellow.
-  prefab: {fileID: 4514986444668122, guid: f72d03e48b3dbfd4ca0f692e695377c3, type: 3}
+  playerName: Player 1
   icon: 0
-  damage: 5
-  range: 5
-  cost: 100
+  wins: 10
+  loses: 1
+  currency: 500

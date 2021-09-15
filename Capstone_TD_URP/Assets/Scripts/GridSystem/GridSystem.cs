@@ -15,6 +15,9 @@ public class GridSystem : MonoBehaviour
     [SerializeField] private List<TowerData> towerDataList;
     private TowerData towerData;
 
+    [SerializeField] private List<PlayerData>PlayersDataList;
+    private PlayerData playerData;
+
     int gridWidth;
     int gridHeight;
 
@@ -209,13 +212,22 @@ public class GridSystem : MonoBehaviour
         grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);
 
         buildChecker.position = grid.GetWorldPosition(checkX, checkY);*/
+       
         Debug.Log("Buy clicked: " + towerId);
         if (towerId < towerDataList.Count && !selectedSpace.IsObstructed(buildChecker.GetChild(0).transform))
         {
             Debug.Log("(Placing) Tower id: " + towerId);
             towerData = towerDataList[towerId];
-            Transform builtTransform = Instantiate(towerData.Prefab, grid.GetWorldPosition(buildX, buildZ), Quaternion.identity);
-            selectedSpace.SetTransform(builtTransform);
+            playerData = PlayersDataList[0];
+            if (playerData.Currency >= towerData.Cost)
+            {
+                Transform builtTransform = Instantiate(towerData.Prefab, grid.GetWorldPosition(buildX, buildZ), Quaternion.identity);
+                selectedSpace.SetTransform(builtTransform);
+                int newCost = playerData.Currency - towerData.Cost;
+                playerData.setCurrency(newCost);
+            }
+            Debug.Log("(Player 1 Bank: " + playerData.Currency);
+
         }
 
         TowerPanel.SetActive(false);

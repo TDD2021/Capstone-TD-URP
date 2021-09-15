@@ -1131,6 +1131,8 @@ MonoBehaviour:
   testTransform: {fileID: 0}
   towerDataList:
   - {fileID: 11400000, guid: f4f390c7155bb8b47a1483c3c9d16e21, type: 2}
+  PlayersDataList:
+  - {fileID: 11400000, guid: 8578e577b4b02814b9e281e3278e8d4a, type: 2}
   mouseColliderLayerMask:
     serializedVersion: 2
     m_Bits: 1024
