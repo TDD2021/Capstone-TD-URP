@@ -11,7 +11,7 @@ public class BuildManager : MonoBehaviour
     private GameObject selectedTower; //selected tower when clicked on
     private bool sellTower = false;
 
-    void Awake() 
+    void Awake()
     {
         if (instance != null)
         {
@@ -19,7 +19,7 @@ public class BuildManager : MonoBehaviour
         }
 
         instance = this;
-        
+
     }
     //list of towers to build
     public GameObject tower1;
@@ -38,7 +38,7 @@ public class BuildManager : MonoBehaviour
 
     }
 
-    public GameObject GetBuildTower() 
+    public GameObject GetBuildTower()
     {
         return buildTower;
     }
@@ -49,9 +49,9 @@ public class BuildManager : MonoBehaviour
         buildTower = tower;
 
     }
-    public void SetSellTower(bool decesion) 
+    public void SetSellTower(bool decesion)
     {
-         sellTower = decesion;
+        sellTower = decesion;
     }
 
     public bool GetSellTower()
@@ -59,5 +59,30 @@ public class BuildManager : MonoBehaviour
         return sellTower;
     }
 
+    public bool CanBuy(PlayerData playerData, TowerData towerData)
+    {
+        if (playerData.Resources >= towerData.Cost)
+        {
+            int newCost = playerData.Resources - towerData.Cost;
+            playerData.SetResources(newCost);
+            return true;
+        }
+        else
+            return false;
+
+    }
+
+    public bool CanSell(PlayerData playerData, TowerData towerData)
+    {
+        if (playerData.Resources >= towerData.Cost)
+        {
+            int newCost = playerData.Resources - towerData.Cost;
+            playerData.SetResources(newCost);
+            return true;
+        }
+        else
+            return false;
+
+    }
 
 }

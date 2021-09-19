@@ -13,9 +13,12 @@ public class MinionCollision_base : MonoBehaviour
         // if (TheColliderThatIWillBeCollidingWith.gameObject.CompareTag("Enemy"))
         //{
         //Destroy(TheColliderThatIWillBeCollidingWith.gameObject);
-        Destroy(TheColliderThatIWillBeCollidingWith.gameObject);
 
+        Destroy(TheColliderThatIWillBeCollidingWith.gameObject);
+        
         // }
+       
+
 
     }
 

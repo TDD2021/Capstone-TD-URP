@@ -23,9 +23,6 @@ public class Unit : MonoBehaviour
 	void Start()
 	{
 		PathManager.RequestPath(transform.position, target.position, OnPathFound);
-		
-		buildManager = BuildManager.instance;
-		buildManager.SetBuildTower(buildManager.tower1);
 		positionOffset = new Vector3(0, 1.09f, 0);
 	}
 

@@ -205,8 +205,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 586020034}
-        m_TargetAssemblyTypeName: TowerShop, Assembly-CSharp
+      - m_Target: {fileID: 687032269}
+        m_TargetAssemblyTypeName: GridSystem, Assembly-CSharp
         m_MethodName: SellTower
         m_Mode: 1
         m_Arguments:
@@ -216,7 +216,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &29224621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 586020032}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d08a46683e266ce448408eb2b5f9f2ee, type: 3}
   m_Name: 
@@ -1107,6 +1107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 687032270}
   - component: {fileID: 687032269}
+  - component: {fileID: 687032271}
   m_Layer: 0
   m_Name: GridSystem
   m_TagString: Untagged
@@ -1132,7 +1133,7 @@ MonoBehaviour:
   towerDataList:
   - {fileID: 11400000, guid: f4f390c7155bb8b47a1483c3c9d16e21, type: 2}
   PlayersDataList:
-  - {fileID: 11400000, guid: 8578e577b4b02814b9e281e3278e8d4a, type: 2}
+  - {fileID: 11400000, guid: b8906030828c7da498ea102f1893149b, type: 2}
   mouseColliderLayerMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -1151,6 +1152,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &687032271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687032268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b839a63d1f4510547ae763c2906d2568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tower1: {fileID: 1979706888108350, guid: f72d03e48b3dbfd4ca0f692e695377c3, type: 3}
+  tower2: {fileID: 0}
+  minion1: {fileID: 0}
 --- !u!1001 &741185480
 PrefabInstance:
   m_ObjectHideFlags: 0

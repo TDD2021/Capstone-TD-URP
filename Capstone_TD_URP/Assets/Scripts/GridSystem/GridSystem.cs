@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class GridSystem : MonoBehaviour
@@ -87,7 +85,8 @@ public class GridSystem : MonoBehaviour
         grid = new Grid3D<GridData>(gridWidth, gridHeight, cellSize, Vector3.zero, (Grid3D<GridData> g, int x, int z) => new GridData(g, x, z));
 
         towerData = towerDataList[0];
-
+        playerData = PlayersDataList[0];
+        playerData.SetResources(1000);
         buildManager = BuildManager.instance;
     }
 
@@ -146,14 +145,18 @@ public class GridSystem : MonoBehaviour
                     }
                     else if (selectedSpace.GetTransform() != null)
                     {
+                        Debug.Log(selectedSpace.GetTransform().gameObject.tag);
                         // Show Sell/Modify Menu - currently same menu (TODO: Add separate contextual menus!)
-                        TowerPanel.SetActive(true);
-                        for (int i = 0; i < TowerPanel.transform.childCount; i++)
+                        if (selectedSpace.GetTransform().gameObject.CompareTag("Tower"))
                         {
-                            TowerPanel.transform.GetChild(i).GetComponent<Button>().interactable = false;
-                        }
+                            TowerPanel.SetActive(true);
+                            for (int i = 0; i < TowerPanel.transform.childCount; i++)
+                            {
+                                TowerPanel.transform.GetChild(i).GetComponent<Button>().interactable = false;
+                            }
 
-                        TowerPanel.transform.GetChild(2).GetComponent<Button>().interactable = true;
+                            TowerPanel.transform.GetChild(2).GetComponent<Button>().interactable = true;
+                        }
                     }
                 }
             }
@@ -218,15 +221,13 @@ public class GridSystem : MonoBehaviour
         {
             Debug.Log("(Placing) Tower id: " + towerId);
             towerData = towerDataList[towerId];
-            playerData = PlayersDataList[0];
-            if (playerData.Currency >= towerData.Cost)
+           if (buildManager.CanBuy(playerData, towerData))
             {
                 Transform builtTransform = Instantiate(towerData.Prefab, grid.GetWorldPosition(buildX, buildZ), Quaternion.identity);
                 selectedSpace.SetTransform(builtTransform);
-                int newCost = playerData.Currency - towerData.Cost;
-                playerData.setCurrency(newCost);
+                
             }
-            Debug.Log("(Player 1 Bank: " + playerData.Currency);
+            Debug.Log("(Player 1 Bank: " + playerData.Resources);
 
         }
 
@@ -238,6 +239,17 @@ public class GridSystem : MonoBehaviour
     public void SellTower()
     {
         Debug.Log("sell clicked");
+
+        if (selectedSpace.GetTransform().gameObject.CompareTag("Tower"))
+            towerData = towerDataList[0];
+
+        //Adds
+        int newCost = playerData.Resources + towerData.Cost;
+        playerData.SetResources(newCost);
+
+        Debug.Log("(Player 1 Bank: " + playerData.Resources);
+        Destroy(selectedSpace.GetTransform().gameObject);
+
         TowerPanel.SetActive(false);
     }
 

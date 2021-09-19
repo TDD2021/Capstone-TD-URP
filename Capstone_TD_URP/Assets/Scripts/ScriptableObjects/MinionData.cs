@@ -10,10 +10,12 @@ public class MinionData : ScriptableObject
     [SerializeField] private GameObject prefab;     // Minion prefab
     [SerializeField] private int icon;              // UI icon for menus
     [SerializeField] private int speed;             // Minion speed
+    [SerializeField] private int amonutdrop;        //the amount of resources minion will drop when killed
 
     public string MinionName => minionName;
     public string Description => description;
     public GameObject Prefab => prefab;
     public int Icon => icon;
     public int Speed => speed;
+    public int AmountDrop => amonutdrop;
 }
