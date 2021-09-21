@@ -65,7 +65,7 @@ public class GatlingGun : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("Enemy Entered Trigger");
+            //Debug.Log("Enemy Entered Trigger");
             go_target = other.transform;
             canFire = true;
         }
@@ -76,7 +76,7 @@ public class GatlingGun : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("Enemy in Trigger");
+            //Debug.Log("Enemy in Trigger");
             go_target = other.transform;
             canFire = true;
         }
