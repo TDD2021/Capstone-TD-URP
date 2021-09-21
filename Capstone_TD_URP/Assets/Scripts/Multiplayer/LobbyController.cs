@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
 
 public class LobbyController : MonoBehaviourPunCallbacks
 {
@@ -13,11 +14,16 @@ public class LobbyController : MonoBehaviourPunCallbacks
     [SerializeField]
     private int RoomSize;
 
+    public TMP_Text PlayerEmail;
+
+
 
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
         startButn.SetActive(true);
+        if (PlayerPrefs.HasKey("EMAIL"))
+            PlayerEmail.text = PlayerPrefs.GetString("EMAIL");
     }
 
     public void QuickStart()

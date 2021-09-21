@@ -39,9 +39,8 @@ public class GameManagerPhoton : MonoBehaviourPunCallbacks //MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Called when the local player left the room. We need to load the launcher scene.
-    /// </summary>
+
+    //Called when the local player left the room. We need to load the launcher scene.
     public override void OnLeftRoom()
     {
         SceneManager.LoadScene(0);

@@ -9,12 +9,10 @@ public class Launcher : MonoBehaviourPunCallbacks //MonoBehaviour
 
     #region Private Serializable Fields
 
-    /// <summary>
-    /// The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created.
-    /// </summary>
+    // The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created.
     [Tooltip("The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created")]
     [SerializeField]
-    private byte maxPlayersPerRoom = 4;
+    private byte maxPlayersPerRoom = 2;
 
     #endregion
 
@@ -22,9 +20,7 @@ public class Launcher : MonoBehaviourPunCallbacks //MonoBehaviour
     #region Private Fields
 
 
-    /// <summary>
-    /// This client's version number. Users are separated from each other by gameVersion (which allows you to make breaking changes).
-    /// </summary>
+    // Client's version number. Users are separated from each other by gameVersion (which allows you to make breaking changes).
     string gameVersion = "1";
 
     [Tooltip("The Ui Panel to let the user enter name, connect and play")]
@@ -36,11 +32,9 @@ public class Launcher : MonoBehaviourPunCallbacks //MonoBehaviour
 
 
 
-    /// <summary>
-    /// Keep track of the current process. Since connection is asynchronous and is based on several callbacks from Photon,
-    /// we need to keep track of this to properly adjust the behavior when we receive call back by Photon.
-    /// Typically this is used for the OnConnectedToMaster() callback.
-    /// </summary>
+    // Keep track of the current process. Since connection is asynchronous and is based on several callbacks from Photon,
+    // we need to keep track of this to properly adjust the behavior when we receive call back by Photon.
+    // Typically this is used for the OnConnectedToMaster() callback.
     bool isConnecting;
 
     #endregion
@@ -48,10 +42,7 @@ public class Launcher : MonoBehaviourPunCallbacks //MonoBehaviour
 
     #region MonoBehaviour CallBacks
 
-
-    /// <summary>
-    /// MonoBehaviour method called on GameObject by Unity during early initialization phase.
-    /// </summary>
+    // MonoBehaviour method called on GameObject by Unity during early initialization phase.
     void Awake()
     {
         // #Critical
@@ -60,9 +51,9 @@ public class Launcher : MonoBehaviourPunCallbacks //MonoBehaviour
     }
 
 
-    /// <summary>
-    /// MonoBehaviour method called on GameObject by Unity during initialization phase.
-    /// </summary>
+    
+    // MonoBehaviour method called on GameObject by Unity during initialization phase.
+    
     void Start()
     {
         //Connect();
@@ -78,11 +69,11 @@ public class Launcher : MonoBehaviourPunCallbacks //MonoBehaviour
     #region Public Methods
 
 
-    /// <summary>
-    /// Start the connection process.
-    /// - If already connected, we attempt joining a random room
-    /// - if not yet connected, Connect this application instance to Photon Cloud Network
-    /// </summary>
+    
+    // Start the connection process.
+    // - If already connected, we attempt joining a random room
+    // - if not yet connected, Connect this application instance to Photon Cloud Network
+    
     public void Connect()
     {
 

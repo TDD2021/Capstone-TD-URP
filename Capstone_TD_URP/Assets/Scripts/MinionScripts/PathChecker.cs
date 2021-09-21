@@ -34,7 +34,7 @@ public class PathChecker : MonoBehaviour
         nq.areaMask = 1 << NavMesh.GetAreaFromName("Walkable");
         //_ = gameObject.GetComponent<NavMeshAgent>().CalculatePath(new Vector3(2.2f, 3f, 2.49f), path);
         _ = NavMesh.CalculatePath(gameObject.transform.position, destination.position, nq, path);
-        Debug.Log("Path check result: " + path.status.ToString());
+        //Debug.Log("Path check result: " + path.status.ToString());
         return path.status == NavMeshPathStatus.PathComplete;
     }
 }
