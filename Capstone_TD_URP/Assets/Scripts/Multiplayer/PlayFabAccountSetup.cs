@@ -13,7 +13,7 @@ public class PlayFabAccountSetup : MonoBehaviour
     private string userName;
 
     public GameObject loginPanel;
-    //public GameObject RegisternPanel;
+    public GameObject RegisternPanel;
     //public GameObject loginPanel;
 
     //public GameObject addLoginPanel;
@@ -28,7 +28,7 @@ public class PlayFabAccountSetup : MonoBehaviour
             PlayFabSettings.TitleId = "9FC97";
         }
         
-       // userEmail = PlayerPrefs.GetString("EMAIL", userEmail);
+        //userEmail = PlayerPrefs.GetString("EMAIL", userEmail);
         //userPassword = PlayerPrefs.GetString("EMAIL", userPassword);
         //userName = PlayerPrefs.GetString("EMAIL", userEmail);
 
@@ -72,6 +72,8 @@ public class PlayFabAccountSetup : MonoBehaviour
 
         Debug.Log("Loading TestConnect Scene!");
         SceneManager.LoadScene("TestConnect");
+        
+
     }
 
     //If Login Fails then try to Register the User. 
@@ -99,7 +101,8 @@ public class PlayFabAccountSetup : MonoBehaviour
         PlayerPrefs.SetString("EMAIL", userEmail);
         //PlayerPrefs.SetString("USERNAME", userName);
         PlayerPrefs.SetString("PASSWORD", userPassword);
-        loginPanel.SetActive(false);
+        //loginPanel.SetActive(false);
+        SceneManager.LoadScene("TestConnect");
     }
 
     private void OnRegisterFailure(PlayFabError error)

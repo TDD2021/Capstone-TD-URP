@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Multiplayer/TestConnect.unity
     guid: 98142a48a652aa14a92debd596c86acd
   - enabled: 1
+    path: Assets/Scenes/GridSystemTesting.unity
+    guid: 30d13d5ba129fa743a412708e4f28341
+  - enabled: 1
     path: Assets/Scenes/Multiplayer/MultiplayerScene.unity
     guid: 687dc2b3e16f6d44184102feb11cfe6e
   - enabled: 1
