@@ -11,10 +11,10 @@ NavMeshProjectSettings:
     cost: 1
   - name: Jump
     cost: 2
-  - name: 
+  - name: PathChecker
     cost: 1
-  - name: 
-    cost: 1
+  - name: Avoid
+    cost: 9999
   - name: 
     cost: 1
   - name: 

@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class GridSystem : MonoBehaviour
 {
     public GameData gameData;
 
+    //public GameObject navMeshPlane;
     public Transform gridPlane;
+    public NavMeshSurface navMeshSurface;
+    public GameObject pathCheckAgent;
+    private bool rebuildNavmesh = false;
 
     [SerializeField] private Transform testTransform;
 
@@ -24,6 +29,10 @@ public class GridSystem : MonoBehaviour
     BuildManager buildManager;
 
     private GridData selectedSpace;
+
+    public GameObject selector;
+    
+    // selector (above) will replace buildChecker (buildChecker functionality is to be moved)
     private Transform buildChecker;
  
     public GameObject TowerPanel;
@@ -96,6 +105,8 @@ public class GridSystem : MonoBehaviour
         buildChecker = Instantiate(gameData.BuildChecker, grid.GetWorldPosition(0, 0), Quaternion.identity);
         //buildChecker.gameObject.SetActive(false);
 
+        //navmesh = navMeshSurface.gameObject.GetComponent<NavMeshSurface>();
+        
         
 
         //TowerPanel.SetActive(false);
@@ -106,6 +117,17 @@ public class GridSystem : MonoBehaviour
     {
         SetGridPlane();
 
+        if (rebuildNavmesh)
+        {
+            //navMeshSurface = navMeshPlane.gameObject.GetComponent<NavMeshSurface>();
+
+            navMeshSurface.BuildNavMesh();
+
+            rebuildNavmesh = false;
+
+            
+        }
+
         /*int checkX;
         int checkY;
         grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);*/
@@ -113,45 +135,60 @@ public class GridSystem : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (!TowerPanel.activeSelf)
+            int checkX;
+            int checkY;
+            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);
+
+            if (selector.transform.position == grid.GetWorldPosition(checkX, checkY))
             {
-                int checkX;
-                int checkY;
-                grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);
+                selector.SetActive(!selector.activeSelf);
+            }
+            else
+            {
+                selector.transform.position = grid.GetWorldPosition(checkX, checkY);
+                selector.SetActive(true);
+            }
 
-                buildChecker.position = grid.GetWorldPosition(checkX, checkY);
+            
 
-                grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
+            TowerPanel.SetActive(selector.activeSelf);
+                
+            selector.transform.position = grid.GetWorldPosition(checkX, checkY);
 
-                if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
+            navMeshSurface.BuildNavMesh();
+
+            buildChecker.position = grid.GetWorldPosition(checkX, checkY);
+
+            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out int x, out int z);
+
+            if (x >= 0 && z >= 0 && x < gridWidth && z < gridHeight)
+            {
+                buildX = x;
+                buildZ = z;
+
+                selectedSpace = grid.GetGridObject(x, z);
+
+                if (selectedSpace.CanBuild())
                 {
-                    buildX = x;
-                    buildZ = z;
-
-                    selectedSpace = grid.GetGridObject(x, z);
-
-                    if (selectedSpace.CanBuild())
+                    // Show Buy Menu - currently same menu (TODO: Add separate contextual menus!)
+                    //TowerPanel.SetActive(true);
+                    for (int i = 0; i < TowerPanel.transform.childCount; i++)
                     {
-                        // Show Buy Menu - currently same menu (TODO: Add separate contextual menus!)
-                        TowerPanel.SetActive(true);
-                        for (int i = 0; i < TowerPanel.transform.childCount; i++)
-                        {
-                            TowerPanel.transform.GetChild(i).GetComponent<Button>().interactable = false;
-                        }
-
-                        TowerPanel.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                        TowerPanel.transform.GetChild(i).GetComponent<Button>().interactable = false;
                     }
-                    else if (selectedSpace.GetTransform() != null)
+
+                    TowerPanel.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                }
+                else if (selectedSpace.GetTransform() != null)
+                {
+                    // Show Sell/Modify Menu - currently same menu (TODO: Add separate contextual menus!)
+                    //TowerPanel.SetActive(true);
+                    for (int i = 0; i < TowerPanel.transform.childCount; i++)
                     {
-                        // Show Sell/Modify Menu - currently same menu (TODO: Add separate contextual menus!)
-                        TowerPanel.SetActive(true);
-                        for (int i = 0; i < TowerPanel.transform.childCount; i++)
-                        {
-                            TowerPanel.transform.GetChild(i).GetComponent<Button>().interactable = false;
-                        }
-
-                        TowerPanel.transform.GetChild(2).GetComponent<Button>().interactable = true;
+                        TowerPanel.transform.GetChild(i).GetComponent<Button>().interactable = false;
                     }
+
+                    TowerPanel.transform.GetChild(2).GetComponent<Button>().interactable = true;
                 }
             }
         }
@@ -204,6 +241,8 @@ public class GridSystem : MonoBehaviour
 
     public void BuyTower(int towerId)
     {
+        _ = pathCheckAgent.gameObject.GetComponent<PathChecker>().CheckPath();
+
         /*int checkX;
         int checkY;
         grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);
@@ -218,15 +257,23 @@ public class GridSystem : MonoBehaviour
             selectedSpace.SetTransform(builtTransform);
         }
 
-        TowerPanel.SetActive(false);
+        //TowerPanel.SetActive(false);
 
         buildChecker.position = grid.GetWorldPosition(-5, -5);
+
+        //NavMeshSurface nm = GameObject.FindObjectOfType<NavMeshSurface>();
+
+        //nm.UpdateNavMesh(navmesh.navMeshData);
+        //navmesh.BuildNavMesh();
+        rebuildNavmesh = true;
+        
+        
     }
 
     public void SellTower()
     {
         Debug.Log("sell clicked");
-        TowerPanel.SetActive(false);
+        //TowerPanel.SetActive(false);
     }
 
     private void SetGridPlane()

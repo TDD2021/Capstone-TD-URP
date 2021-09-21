@@ -10,10 +10,13 @@ public class MinionData : ScriptableObject
     [SerializeField] private GameObject prefab;     // Minion prefab
     [SerializeField] private int icon;              // UI icon for menus
     [SerializeField] private int speed;             // Minion speed
+    [SerializeField] private float health;          // Minion health
+    [SerializeField] private float attack;          // Minion attack power
 
     public string MinionName => minionName;
     public string Description => description;
     public GameObject Prefab => prefab;
     public int Icon => icon;
     public int Speed => speed;
+    public float Health => Health;
 }
