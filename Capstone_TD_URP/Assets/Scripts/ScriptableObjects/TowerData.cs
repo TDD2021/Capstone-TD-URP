@@ -19,5 +19,4 @@ public class TowerData : ScriptableObject
     public int Damage => damage;
     public int Range => range;
 
-
 }

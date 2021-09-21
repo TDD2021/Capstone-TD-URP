@@ -2094,9 +2094,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29d657dfe2b7ba438250a9ddd74d2b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  userEmail: 
-  userPassword: 
-  userName: 
   loginPanel: {fileID: 320024876}
   RegisternPanel: {fileID: 0}
 --- !u!1 &2137736684

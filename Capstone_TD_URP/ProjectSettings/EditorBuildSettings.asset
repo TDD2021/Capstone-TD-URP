@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Multiplayer/TestConnect.unity
     guid: 98142a48a652aa14a92debd596c86acd
   - enabled: 1
+    path: Assets/Scenes/GridSystemTesting.unity
+    guid: 30d13d5ba129fa743a412708e4f28341
+  - enabled: 1
     path: Assets/Scenes/Multiplayer/MultiplayerScene.unity
     guid: 687dc2b3e16f6d44184102feb11cfe6e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Multiplayer/Unused/LoginScene.unity
     guid: 31829b0100b5d954e9a16c9083277694
   - enabled: 0
@@ -20,10 +23,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Unused/LevelScene.unity
     guid: f6ff3923d33c2b7479260952d80e8b06
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Multiplayer/Unused/Launcher.unity
     guid: 58c2f48d959900846b48d4576734f0bf
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Multiplayer/Unused/Room for 1.unity
     guid: 5d2d7896bd66e3548a6eefcb97c8a243
   - enabled: 0
