@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class WaveSpamer : MonoBehaviour
 {
@@ -15,8 +16,9 @@ public class WaveSpamer : MonoBehaviour
 	private int waveNumber = 0;// The number of wave have been generate 
 
 	//Ui text for display
-	public Text waveCountdowntxt;
-	public Text currentWave;
+	public TextMeshProUGUI waveCountdowntxt;
+	public TextMesh currentWave;
+	
 
 	private void Update()
 	{
@@ -32,7 +34,7 @@ public class WaveSpamer : MonoBehaviour
 		countdown -= Time.deltaTime;
 
 		//Apply txt Display
-		waveCountdowntxt.text = Mathf.Round(countdown).ToString();
+		 waveCountdowntxt.text = Mathf.Round(countdown).ToString();
 		currentWave.text = waveNumber.ToString();
 	}
 
