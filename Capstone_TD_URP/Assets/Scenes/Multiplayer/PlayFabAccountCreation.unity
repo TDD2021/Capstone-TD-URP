@@ -1297,7 +1297,7 @@ GameObject:
   - component: {fileID: 1429599453}
   - component: {fileID: 1429599452}
   m_Layer: 5
-  m_Name: Text
+  m_Name: EmailInputText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1560,7 +1560,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1607765256
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2094,6 +2094,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f29d657dfe2b7ba438250a9ddd74d2b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userEmailInput: {fileID: 948211797}
+  userEmailpwd: {fileID: 498486353}
   loginPanel: {fileID: 320024876}
   RegisternPanel: {fileID: 0}
 --- !u!1 &2137736684

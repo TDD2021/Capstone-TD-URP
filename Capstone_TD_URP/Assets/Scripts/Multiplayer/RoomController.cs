@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System;
+
 public class RoomController : MonoBehaviourPunCallbacks
 {
     [SerializeField]
@@ -18,8 +20,8 @@ public class RoomController : MonoBehaviourPunCallbacks
     }
 
     public override void OnJoinedRoom()
-    {
-        Debug.Log("Joined room");
+    {     
+        Debug.Log(PlayerPrefs.GetString("EMAIL") + " has joined room");
         StartGame();
     }
 

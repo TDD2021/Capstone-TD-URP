@@ -12,7 +12,7 @@ public class Launcher : MonoBehaviourPunCallbacks //MonoBehaviour
     // The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created.
     [Tooltip("The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created")]
     [SerializeField]
-    private byte maxPlayersPerRoom = 2;
+    private byte maxPlayersPerRoom = 4;
 
     #endregion
 
@@ -56,6 +56,13 @@ public class Launcher : MonoBehaviourPunCallbacks //MonoBehaviour
     
     void Start()
     {
+        string defaultName = string.Empty;
+        if (PlayerPrefs.HasKey("EMAIL"))
+        {
+            defaultName = PlayerPrefs.GetString("EMAIL");
+        }
+        PhotonNetwork.NickName = defaultName;
+
         //Connect();
         progressLabel.SetActive(false);
         controlPanel.SetActive(true);

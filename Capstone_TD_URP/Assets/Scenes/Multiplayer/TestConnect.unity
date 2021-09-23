@@ -922,7 +922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startButn: {fileID: 1582263877}
   cancelButn: {fileID: 713184913}
-  RoomSize: 2
+  RoomSize: 4
   PlayerEmail: {fileID: 1734558252}
 --- !u!4 &947343263
 Transform:

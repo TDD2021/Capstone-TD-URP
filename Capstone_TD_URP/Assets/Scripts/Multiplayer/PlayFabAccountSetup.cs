@@ -4,13 +4,20 @@ using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using UnityEngine.SceneManagement;
-
+using TMPro;
+using UnityEngine.UI;
 
 public class PlayFabAccountSetup : MonoBehaviour
 {
     private string userEmail;
     private string userPassword;
     private string userName;
+
+    [SerializeField]
+    private InputField userEmailInput;
+    [SerializeField]
+    private InputField userEmailpwd;
+
 
     public GameObject loginPanel;
     public GameObject RegisternPanel;
@@ -27,14 +34,43 @@ public class PlayFabAccountSetup : MonoBehaviour
         {
             PlayFabSettings.TitleId = "9FC97";
         }
-        
-        //userEmail = PlayerPrefs.GetString("EMAIL", userEmail);
-        //userPassword = PlayerPrefs.GetString("EMAIL", userPassword);
-        //userName = PlayerPrefs.GetString("EMAIL", userEmail);
 
 
+        if (PlayerPrefs.HasKey("EMAIL"))
+        {
 
-        //PlayerPrefs.GetString("EMAIL", "Email");
+            Debug.Log("PlayerPref Email: " + PlayerPrefs.GetString("EMAIL"));
+            Debug.Log("PlayerPref pwd: " + PlayerPrefs.GetString("PASSWORD"));
+            userEmailInput.text = PlayerPrefs.GetString("EMAIL");
+            userEmailpwd.text = PlayerPrefs.GetString("PASSWORD");
+
+            userEmail = PlayerPrefs.GetString("EMAIL");
+            userPassword = PlayerPrefs.GetString("PASSWORD");
+
+            //var request = new LoginWithEmailAddressRequest { Email = userEmail, Password = userPassword };
+            //PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailure);
+        }
+
+        else
+        {
+            #if UNITY_ANDROID
+                        var requestAndroid = new LoginWithAndroidDeviceIDRequest { AndroidDeviceId = returnMobileID(), CreateAccount = true };
+                        PlayFabClientAPI.LoginWithAndroidDeviceID(requestAndroid, OnLoginMobileSuccess, OnLoginMobileFailure);
+            #endif
+
+            #if UNITY_IOS
+                        var requestIOS = new LoginWithIOSDeviceIDRequest { DeviceId = returnMobileID(), CreateAccount = true };
+                        PlayFabClientAPI.LoginWithIOSDeviceID(requestIOS, OnLoginMobileSuccess, OnLoginMobileFailure);
+            #endif
+        }
+
+    }
+
+
+    public static string returnMobileID()
+    {
+        string deviceID = SystemInfo.deviceUniqueIdentifier;
+        return deviceID;
     }
 
     public void GetUserEmail(string emailIn)
@@ -83,6 +119,18 @@ public class PlayFabAccountSetup : MonoBehaviour
         Debug.LogError("Here's some debug information:" + error.GenerateErrorReport());
         //var registerRequest = new RegisterPlayFabUserRequest { Email = userEmail, Password = userPassword, Username = userName };
         //PlayFabClientAPI.RegisterPlayFabUser(registerRequest, OnRegisterSucess, OnRegisterFailure);
+    }
+
+    private void OnLoginMobileSuccess(LoginResult result)
+    {
+        Debug.Log("Mobile Login Success!");
+        loginPanel.SetActive(false);
+    }
+
+    private void OnLoginMobileFailure(PlayFabError error)
+    {
+        Debug.Log("Mobile Login Failure");
+        Debug.Log(error.GenerateErrorReport());
     }
 
     public void OnClickRegister()
