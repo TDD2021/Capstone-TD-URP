@@ -9,7 +9,7 @@ public class MinionTarget : MonoBehaviour
     private float health;
     public float startHealth = 100f;
 
-    public Image healthBar;
+    //public Image healthBar;
 
 
     private void Start()
@@ -20,7 +20,7 @@ public class MinionTarget : MonoBehaviour
     {
         health -= damageAmount;
 
-        healthBar.fillAmount = health / startHealth;
+        //healthBar.fillAmount = health / startHealth;
 
         if (health <= 0)
         {

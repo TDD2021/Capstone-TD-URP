@@ -20692,8 +20692,15 @@ MonoBehaviour:
   go_GunBody: {fileID: 4856386421184550}
   go_barrel: {fileID: 4575810401582574}
   barrelRotationSpeed: 1000
-  firingRange: 10
+  firingRange: 500
   muzzelFlash: {fileID: 198562569527715984}
+  timerCountDown: 3
+  BulletPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  fireRate: 5
+  turretDamage: 10
+  impactEffect: {fileID: 0}
+  goldGained: {fileID: 0}
 --- !u!135 &135749318806271514
 SphereCollider:
   m_ObjectHideFlags: 0
