@@ -52,6 +52,7 @@ public class MinionMover : MonoBehaviour
         if (!_navMeshAgent.pathPending)
         {
 
+<<<<<<< Updated upstream
             float dist = _navMeshAgent.remainingDistance;
             if (dist <= 0.5f)
             {
@@ -74,6 +75,30 @@ public class MinionMover : MonoBehaviour
             SetDestination();
         }
 
+=======
+    /*
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Minions hit something");
+        if (_navMeshAgent != null)
+            {
+                Destroy(_navMeshAgent(Clone));
+            }
+        
+    
+    }
+    */
+    /*
+    private void OnTriggerStay(Collider other)
+    {
+    
+    }
+
+    */
+        // Update is called once per frame
+        void Update()
+    {
+>>>>>>> Stashed changes
     
 
         if (_navMeshAgent.hasPath)
