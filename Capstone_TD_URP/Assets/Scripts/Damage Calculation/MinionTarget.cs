@@ -11,6 +11,8 @@ public class MinionTarget : MonoBehaviour
 
     public Image healthBar;
 
+    //Minion damag
+    private float minionDamage;
 
     private void Start()
     {

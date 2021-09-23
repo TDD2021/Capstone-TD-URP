@@ -17,7 +17,7 @@ public class WaveSpamer : MonoBehaviour
 
 	//Ui text for display
 	public TextMeshProUGUI waveCountdowntxt;
-	public TextMesh currentWave;
+	public TextMeshProUGUI currentWave;
 	
 
 	private void Update()
