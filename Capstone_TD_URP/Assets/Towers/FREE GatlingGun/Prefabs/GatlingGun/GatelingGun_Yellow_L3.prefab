@@ -20699,7 +20699,7 @@ MonoBehaviour:
   firePoint: {fileID: 0}
   fireRate: 5
   turretDamage: 10
-  impactEffect: {fileID: 0}
+  impactEffect: {fileID: 1414672035510704215, guid: 0021cdbca616d8241b9ea420ace497d8, type: 3}
   goldGained: {fileID: 0}
 --- !u!135 &135749318806271514
 SphereCollider:

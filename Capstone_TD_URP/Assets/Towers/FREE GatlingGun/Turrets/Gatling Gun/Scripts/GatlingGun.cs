@@ -167,6 +167,7 @@ public class GatlingGun : MonoBehaviour
             if (Physics.Raycast(go_baseRotation.position, go_baseRotation.transform.forward, out hit, 500f))
             {
                 Debug.Log(hit.transform.name);
+
                 MinionTarget target = hit.transform.GetComponent<MinionTarget>();
 
                 if (target != null)
@@ -180,7 +181,7 @@ public class GatlingGun : MonoBehaviour
                 //Display gold get by destroying minion:
                 //destroyedAmount++;
 
-                goldGained.text = destroyedAmount.ToString();
+                //goldGained.text = destroyedAmount.ToString();
             }
             else
             {

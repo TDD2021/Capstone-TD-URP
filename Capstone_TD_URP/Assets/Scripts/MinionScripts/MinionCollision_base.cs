@@ -47,7 +47,7 @@ public class MinionCollision_base : MonoBehaviour
         if (health <= 0)
         {
             GameObject impactGO = Instantiate(impactEffect, basePosition, Quaternion.LookRotation(basePosition));
-            Destroy(impactGO, 0.4f);
+           // Destroy(impactGO, 1.5f);
             die();
 
         }
