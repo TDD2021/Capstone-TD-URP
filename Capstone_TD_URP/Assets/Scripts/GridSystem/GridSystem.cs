@@ -34,6 +34,7 @@ public class GridSystem : MonoBehaviour
     
     // selector (above) will replace buildChecker (buildChecker functionality is to be moved)
     private Transform buildChecker;
+    [SerializeField] private GameObject towerPlacerPrefab;
  
     public GameObject TowerPanel;
     private bool ShowTowerMenu = false;
@@ -177,7 +178,12 @@ public class GridSystem : MonoBehaviour
                         TowerPanel.transform.GetChild(i).GetComponent<Button>().interactable = false;
                     }
 
-                    TowerPanel.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                    if (pathCheckAgent.GetComponent<PathChecker>().CheckPath())
+                    {
+                        TowerPanel.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                    }
+
+                    
                 }
                 else if (selectedSpace.GetTransform() != null)
                 {
@@ -241,31 +247,33 @@ public class GridSystem : MonoBehaviour
 
     public void BuyTower(int towerId)
     {
-        _ = pathCheckAgent.gameObject.GetComponent<PathChecker>().CheckPath();
-
-        /*int checkX;
-        int checkY;
-        grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);
-
-        buildChecker.position = grid.GetWorldPosition(checkX, checkY);*/
-        Debug.Log("Buy clicked: " + towerId);
-        if (towerId < towerDataList.Count && !selectedSpace.IsObstructed(buildChecker.GetChild(0).transform))
+        if (pathCheckAgent.gameObject.GetComponent<PathChecker>().CheckPath())
         {
-            Debug.Log("(Placing) Tower id: " + towerId);
-            towerData = towerDataList[towerId];
-            Transform builtTransform = Instantiate(towerData.Prefab, grid.GetWorldPosition(buildX, buildZ), Quaternion.identity);
-            selectedSpace.SetTransform(builtTransform);
+            /*int checkX;
+            int checkY;
+            grid.GetXZ(Utility.GetMouseWorldPosition(mouseColliderLayerMask), out checkX, out checkY);
+
+            buildChecker.position = grid.GetWorldPosition(checkX, checkY);*/
+            Debug.Log("Buy clicked: " + towerId);
+            if (towerId < towerDataList.Count && !selectedSpace.IsObstructed(buildChecker.GetChild(0).transform))
+            {
+                Debug.Log("(Placing) Tower id: " + towerId);
+                towerData = towerDataList[towerId];
+                Transform builtTransform = Instantiate(towerPlacerPrefab.transform, grid.GetWorldPosition(buildX, buildZ), Quaternion.identity);
+                builtTransform.gameObject.GetComponent<TowerPlacer>().Initialize(ref grid, towerId);
+                //selectedSpace.SetTransform(builtTransform);
+            }
+
+            //TowerPanel.SetActive(false);
+
+            //buildChecker.position = grid.GetWorldPosition(-5, -5);
+
+            //NavMeshSurface nm = GameObject.FindObjectOfType<NavMeshSurface>();
+
+            //nm.UpdateNavMesh(navmesh.navMeshData);
+            //navmesh.BuildNavMesh();
+            rebuildNavmesh = true;
         }
-
-        //TowerPanel.SetActive(false);
-
-        buildChecker.position = grid.GetWorldPosition(-5, -5);
-
-        //NavMeshSurface nm = GameObject.FindObjectOfType<NavMeshSurface>();
-
-        //nm.UpdateNavMesh(navmesh.navMeshData);
-        //navmesh.BuildNavMesh();
-        rebuildNavmesh = true;
         
         
     }

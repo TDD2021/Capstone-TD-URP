@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BuildCheckerScript : MonoBehaviour
 {
-    private bool obstructed = false;
+    private bool obstructed = true;
     private Transform parent;
     public GameData gameData;
     private bool m_Started;
@@ -20,8 +20,8 @@ public class BuildCheckerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        parent = transform.parent.transform;
-        parent.localScale = new Vector3(gameData.CellSize, gameData.CellSize, gameData.CellSize);
+        //parent = transform.parent.transform;
+        transform.localScale = new Vector3(gameData.CellSize, gameData.CellSize, gameData.CellSize);
         obstructed = false;
         m_Started = true;
         
@@ -57,14 +57,14 @@ public class BuildCheckerScript : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         if (m_Started)
         {
             Gizmos.DrawWireCube(offsetPosition, transform.parent.transform.localScale);
         }
-    }
+    }*/
 
     /*void OnTriggerEnter(Collider other)
     {
